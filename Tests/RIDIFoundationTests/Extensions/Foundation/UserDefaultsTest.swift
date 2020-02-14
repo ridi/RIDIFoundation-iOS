@@ -25,6 +25,22 @@ final class UserDefaultsTests: XCTestCase {
         )
     }
 
+    func testBindingDefaultValue() {
+        struct Test {
+            struct Keys {
+                static let test = UserDefaults.Key(UUID().uuidString, valueType: String.self)
+            }
+
+            @UserDefaults.Binding(key: Keys.test, defaultValue: UUID().uuidString)
+            static var value: String
+        }
+
+        XCTAssertEqual(
+            Test.value,
+            Test.$value.defaultValue
+        )
+    }
+
     func testSubscript() {
         let key = UserDefaults.Key<Any>(UUID().uuidString)
 

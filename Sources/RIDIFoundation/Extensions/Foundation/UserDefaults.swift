@@ -156,21 +156,25 @@ extension UserDefaults {
 
 extension UserDefaults {
     @propertyWrapper
-    struct Binding<T> {
-        let userDefaults: UserDefaults
-        let key: Key<T>
-        let defaultValue: () -> T
+    public struct Binding<T> {
+        public let userDefaults: UserDefaults
+        public let key: Key<T>
+        public let defaultValue: T
 
-        var wrappedValue: T {
+        public var wrappedValue: T {
             get {
-                return userDefaults[key] ?? defaultValue()
+                return userDefaults[key] ?? defaultValue
             }
             set {
                 return userDefaults[key] = newValue
             }
         }
 
-        init(userDefaults: UserDefaults = .standard, key: Key<T>, defaultValue: @escaping @autoclosure () -> T) {
+        public var projectedValue: Binding<T> {
+            return self
+        }
+
+        public init(userDefaults: UserDefaults = .standard, key: Key<T>, defaultValue: T) {
             self.userDefaults = userDefaults
             self.key = key
             self.defaultValue = defaultValue
