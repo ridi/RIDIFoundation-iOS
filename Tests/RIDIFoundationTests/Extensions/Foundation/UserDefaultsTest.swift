@@ -13,7 +13,7 @@ final class UserDefaultsTests: XCTestCase {
                 static let test = UserDefaults.Key<String>(UUID().uuidString)
             }
 
-            @UserDefaults .Binding(key: Keys.test, defaultValue: "test")
+            @UserDefaults.Binding(key: Keys.test, defaultValue: "test")
             static var value: String
         }
 
