@@ -10,7 +10,7 @@ final class UserDefaultsTests: XCTestCase {
     func testBinding() {
         struct Test {
             struct Keys {
-                static let test = UserDefaults.Key<String>(UUID().uuidString)
+                static let test = UserDefaults.Key(UUID().uuidString, valueType: String.self)
             }
 
             @UserDefaults.Binding(key: Keys.test, defaultValue: "test")

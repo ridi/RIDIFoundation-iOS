@@ -9,6 +9,10 @@ extension UserDefaults {
     public struct Key<Value>: Hashable, Equatable, RawRepresentable {
         public var rawValue: String
 
+        public init(_ rawValue: String, valueType: Value.Type) {
+            self.init(rawValue)
+        }
+
         public init(_ rawValue: String) {
             self.init(rawValue: rawValue)
         }
