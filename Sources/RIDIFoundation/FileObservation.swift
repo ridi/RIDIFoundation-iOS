@@ -14,8 +14,11 @@ open class FileObservation {
 
     private let fsObjectSource: DispatchSourceFileSystemObject
 
-    private init(path: String, handler: @escaping () -> Void) {
+    private init(path: String, handler: @escaping () -> Void) throws {
         let fileDescriptor = open(path, O_EVTONLY)
+        guard fileDescriptor >= 0 else {
+            throw POSIXError(POSIXErrorCode(rawValue: errno)!)
+        }
 
         fsObjectSource = DispatchSource.makeFileSystemObjectSource(
             fileDescriptor: fileDescriptor,
@@ -38,11 +41,11 @@ open class FileObservation {
 }
 
 extension FileObservation {
-    class func observe(atPath path: String, handler: @escaping () -> Void) -> FileObservation {
-        FileObservation(path: path, handler: handler)
+    class func observe(atPath path: String, handler: @escaping () -> Void) throws -> FileObservation {
+        try FileObservation(path: path, handler: handler)
     }
 
-    class func observe(at url: URL, handler: @escaping () -> Void) -> FileObservation {
-        observe(atPath: url.standardizedFileURL.path, handler: handler)
+    class func observe(at url: URL, handler: @escaping () -> Void) throws -> FileObservation {
+        try observe(atPath: url.standardizedFileURL.path, handler: handler)
     }
 }
