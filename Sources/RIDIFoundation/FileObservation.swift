@@ -41,11 +41,11 @@ open class FileObservation {
 }
 
 extension FileObservation {
-    class func observe(atPath path: String, handler: @escaping () -> Void) throws -> FileObservation {
+    open class func observe(atPath path: String, handler: @escaping () -> Void) throws -> FileObservation {
         try FileObservation(path: path, handler: handler)
     }
 
-    class func observe(at url: URL, handler: @escaping () -> Void) throws -> FileObservation {
+    open class func observe(at url: URL, handler: @escaping () -> Void) throws -> FileObservation {
         try observe(atPath: url.standardizedFileURL.path, handler: handler)
     }
 }

@@ -9,8 +9,7 @@ import XCTest
 final class FileObservationTests: XCTestCase {
     func test() throws {
         let tempDirectory = URL(
-            fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(UUID().uuidString,isDirectory: true
-        )
+            fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(UUID().uuidString, isDirectory: true)
 
         try FileManager.default.createDirectory(at: tempDirectory, withIntermediateDirectories: true)
 
@@ -36,8 +35,7 @@ final class FileObservationTests: XCTestCase {
 
     func testNilNotify() throws {
         let tempDirectory = URL(
-            fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(UUID().uuidString,isDirectory: true
-        )
+            fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(UUID().uuidString, isDirectory: true)
 
         try FileManager.default.createDirectory(at: tempDirectory, withIntermediateDirectories: true)
 
