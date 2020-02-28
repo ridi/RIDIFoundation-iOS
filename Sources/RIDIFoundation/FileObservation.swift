@@ -1,8 +1,3 @@
-//
-//  FileObservation.swift
-//
-//
-
 import Foundation
 
 open class FileObservation {

@@ -1,8 +1,3 @@
-//
-//  FileObservationTests.swift
-//
-//
-
 @testable import RIDIFoundation
 import XCTest
 
