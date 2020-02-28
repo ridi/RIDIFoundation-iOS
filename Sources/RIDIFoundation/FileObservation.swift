@@ -7,7 +7,7 @@ open class FileObservation {
         target: .global()
     )
 
-    private let fsObjectSource: DispatchSourceFileSystemObject
+    private let fileSystemObjectSource: DispatchSourceFileSystemObject
 
     private init(path: String, handler: @escaping () -> Void) throws {
         let fileDescriptor = open(path, O_EVTONLY)
@@ -15,23 +15,23 @@ open class FileObservation {
             throw POSIXError(POSIXErrorCode(rawValue: errno)!)
         }
 
-        fsObjectSource = DispatchSource.makeFileSystemObjectSource(
+        fileSystemObjectSource = DispatchSource.makeFileSystemObjectSource(
             fileDescriptor: fileDescriptor,
             eventMask: .write,
             queue: Self.mainQueue
         )
 
-        fsObjectSource.setEventHandler(handler: handler)
+        fileSystemObjectSource.setEventHandler(handler: handler)
 
-        fsObjectSource.setCancelHandler {
+        fileSystemObjectSource.setCancelHandler {
             close(fileDescriptor)
         }
 
-        fsObjectSource.resume()
+        fileSystemObjectSource.resume()
     }
 
     deinit {
-        fsObjectSource.cancel()
+        fileSystemObjectSource.cancel()
     }
 }
 
