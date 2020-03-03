@@ -1,8 +1,3 @@
-//
-//  UserDefaults.swift
-//
-//
-
 import Foundation
 
 extension UserDefaults {

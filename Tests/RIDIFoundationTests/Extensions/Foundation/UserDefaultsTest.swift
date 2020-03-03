@@ -1,8 +1,3 @@
-//
-//  UserDefaultsTest.swift
-//
-//
-
 @testable import RIDIFoundation
 import XCTest
 
