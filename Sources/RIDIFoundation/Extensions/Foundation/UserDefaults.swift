@@ -158,7 +158,7 @@ public protocol UserDefaultsBindable {
 
 extension UserDefaultsBindable {
     public var hasPersistentValue: Bool {
-        return userDefaults.object(forKey: key.rawValue) == nil
+        return userDefaults.object(forKey: key.rawValue) != nil
     }
 
     public func removePersistentValue() {
@@ -226,7 +226,7 @@ extension UserDefaults {
 
         public var wrappedValue: T? {
             get {
-                guard !hasPersistentValue else {
+                guard hasPersistentValue else {
                     return nil
                 }
 
