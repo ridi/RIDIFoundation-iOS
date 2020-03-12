@@ -149,9 +149,26 @@ extension UserDefaults {
     }
 }
 
+public protocol UserDefaultsBindable {
+    associatedtype ValueType
+
+    var userDefaults: UserDefaults { get }
+    var key: UserDefaults.Key<ValueType> { get }
+}
+
+extension UserDefaultsBindable {
+    public var isEmpty: Bool {
+        return userDefaults.object(forKey: key.rawValue) == nil
+    }
+
+    public func remove() {
+        userDefaults.removeObject(forKey: key)
+    }
+}
+
 extension UserDefaults {
     @propertyWrapper
-    public struct Binding<T> {
+    public struct Binding<T>: UserDefaultsBindable {
         public let userDefaults: UserDefaults
         public let key: Key<T>
         public let defaultValue: T
@@ -173,6 +190,60 @@ extension UserDefaults {
             self.userDefaults = userDefaults
             self.key = key
             self.defaultValue = defaultValue
+        }
+    }
+
+    @propertyWrapper
+    public struct LazyBinding<T>: UserDefaultsBindable {
+        public let userDefaults: UserDefaults
+        public let key: Key<T>
+        public let defaultValue: () -> T
+
+        public var wrappedValue: T {
+            get {
+                return userDefaults[key] ?? defaultValue()
+            }
+            set {
+                return userDefaults[key] = newValue
+            }
+        }
+
+        public var projectedValue: LazyBinding<T> {
+            return self
+        }
+
+        public init(userDefaults: UserDefaults = .standard, key: Key<T>, defaultValue: @autoclosure @escaping () -> T) {
+            self.userDefaults = userDefaults
+            self.key = key
+            self.defaultValue = defaultValue
+        }
+    }
+
+    @propertyWrapper
+    public struct OptionalBinding<T>: UserDefaultsBindable {
+        public let userDefaults: UserDefaults
+        public let key: Key<T>
+
+        public var wrappedValue: T? {
+            get {
+                guard !isEmpty else {
+                    return nil
+                }
+
+                return userDefaults[key]
+            }
+            set {
+                return userDefaults[key] = newValue
+            }
+        }
+
+        public var projectedValue: OptionalBinding<T> {
+            return self
+        }
+
+        public init(userDefaults: UserDefaults = .standard, key: Key<T>) {
+            self.userDefaults = userDefaults
+            self.key = key
         }
     }
 }
