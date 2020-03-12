@@ -19,7 +19,7 @@ extension UserDefaults {
 }
 
 extension UserDefaults {
-    subscript<T>(key: Key<T>) -> T? {
+    open subscript<T>(key: Key<T>) -> T? {
         get {
             return object(forKey: key.rawValue) as? T
         }
@@ -28,7 +28,7 @@ extension UserDefaults {
         }
     }
 
-    subscript(key: Key<Int>) -> Int {
+    open subscript(key: Key<Int>) -> Int {
         get {
             return integer(forKey: key.rawValue)
         }
@@ -37,7 +37,7 @@ extension UserDefaults {
         }
     }
 
-    subscript(key: Key<Float>) -> Float {
+    open subscript(key: Key<Float>) -> Float {
         get {
             return float(forKey: key.rawValue)
         }
@@ -46,7 +46,7 @@ extension UserDefaults {
         }
     }
 
-    subscript(key: Key<Double>) -> Double {
+    open subscript(key: Key<Double>) -> Double {
         get {
             return double(forKey: key.rawValue)
         }
@@ -55,7 +55,7 @@ extension UserDefaults {
         }
     }
 
-    subscript(key: Key<Bool>) -> Bool {
+    open subscript(key: Key<Bool>) -> Bool {
         get {
             return bool(forKey: key.rawValue)
         }
@@ -64,7 +64,7 @@ extension UserDefaults {
         }
     }
 
-    subscript<T>(key: Key<[T]>) -> [T]? {
+    open subscript<T>(key: Key<[T]>) -> [T]? {
         get {
             return array(forKey: key.rawValue) as? [T]
         }
@@ -73,7 +73,7 @@ extension UserDefaults {
         }
     }
 
-    subscript<T, U>(key: Key<[T: U]>) -> [T: U]? {
+    open subscript<T, U>(key: Key<[T: U]>) -> [T: U]? {
         get {
             return dictionary(forKey: key.rawValue) as? [T: U]
         }
@@ -82,7 +82,7 @@ extension UserDefaults {
         }
     }
 
-    subscript(key: Key<Data>) -> Data? {
+    open subscript(key: Key<Data>) -> Data? {
         get {
             return data(forKey: key.rawValue)
         }
@@ -91,7 +91,7 @@ extension UserDefaults {
         }
     }
 
-    subscript(key: Key<[String]>) -> [String]? {
+    open subscript(key: Key<[String]>) -> [String]? {
         get {
             return stringArray(forKey: key.rawValue)
         }
@@ -100,7 +100,7 @@ extension UserDefaults {
         }
     }
 
-    subscript(key: Key<URL>) -> URL? {
+    open subscript(key: Key<URL>) -> URL? {
         get {
             return url(forKey: key.rawValue)
         }
@@ -109,7 +109,7 @@ extension UserDefaults {
         }
     }
 
-    subscript<T>(key: Key<T>) -> T? where T: LosslessStringConvertible {
+    open subscript<T>(key: Key<T>) -> T? where T: LosslessStringConvertible {
         get {
             string(forKey: key.rawValue).flatMap { T($0) }
         }
