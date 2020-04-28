@@ -1,0 +1,32 @@
+language: swift
+os: osx
+osx_image: xcode11.4
+
+script:
+  - swift test -v
+
+stages:
+  - Lint
+  - Tests
+
+jobs:
+  include:
+    - stage: Lint
+      name: Lint
+      git:
+        depth: 1
+        submodules: false
+      cache:
+        - directories:
+          - /usr/local/lib/mint
+      install: 
+        - brew install mint
+        - mint install -n SwiftLint
+      script: mint run SwiftLint swiftlint lint --reporter emoji
+
+    - stage: Tests
+      osx_image: xcode11.3
+    - stage: Tests
+      osx_image: xcode11.4
+    
+  fast_finish: true
