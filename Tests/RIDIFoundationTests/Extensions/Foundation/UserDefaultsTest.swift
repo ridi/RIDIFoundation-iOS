@@ -134,6 +134,25 @@ final class UserDefaultsTests: XCTestCase {
             value
         )
     }
+    
+    func testCodableBindingWithTopLevel() {
+        struct Test {
+            struct Keys {
+                static let test = UserDefaults.Key(UUID().uuidString, valueType: Int.self)
+            }
+
+            @UserDefaults.CodableBinding(key: Keys.test, defaultValue: 0)
+            static var value: Int
+        }
+
+        let value = 5
+        Test.value = value
+
+        XCTAssertEqual(
+            Test.value,
+            value
+        )
+    }
 
     static var allTests = [
         ("testBinding", testBinding),

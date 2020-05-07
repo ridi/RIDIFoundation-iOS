@@ -120,7 +120,7 @@ extension UserDefaults {
     }
 
     open func object<T>(forKey key: Key<T>) throws -> T? where T: Decodable {
-        let decoder = PropertyListDecoder()
+        let decoder = JSONDecoder()
 
         return try data(forKey: key.rawValue).flatMap {
             try decoder.decode(T.self, from: $0)
@@ -128,8 +128,7 @@ extension UserDefaults {
     }
 
     open func set<T>(_ value: T?, forKey key: Key<T>) throws where T: Encodable {
-        let encoder = PropertyListEncoder()
-        encoder.outputFormat = .binary
+        let encoder = JSONEncoder()
 
         set(
             try value.flatMap { try encoder.encode($0) },
