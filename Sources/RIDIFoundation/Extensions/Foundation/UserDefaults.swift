@@ -188,6 +188,7 @@ extension UserDefaults {
         }
 
         public init(userDefaults: UserDefaults = .standard, key: Key<T>, defaultValue: T) {
+            checkCodable(T.self)
             self.userDefaults = userDefaults
             self.key = key
             self.defaultValue = defaultValue
@@ -214,6 +215,7 @@ extension UserDefaults {
         }
 
         public init(userDefaults: UserDefaults = .standard, key: Key<T>, defaultValue: @autoclosure @escaping () -> T) {
+            checkCodable(T.self)
             self.userDefaults = userDefaults
             self.key = key
             self.defaultValue = defaultValue
@@ -243,8 +245,77 @@ extension UserDefaults {
         }
 
         public init(userDefaults: UserDefaults = .standard, key: Key<T>) {
+            checkCodable(T.self)
             self.userDefaults = userDefaults
             self.key = key
         }
     }
+
+    @propertyWrapper
+    public struct CodableBinding<T: Codable>: UserDefaultsBindable {
+        public let userDefaults: UserDefaults
+        public let key: Key<T>
+        public let defaultValue: T
+
+        public var wrappedValue: T {
+            get {
+                do {
+                    return try userDefaults.object(forKey: key) ?? defaultValue
+                } catch {
+                    print(
+                        "⚠️ Decodable failure anomaly was detected." +
+                        "  Debugging: To debug this issue you can set a breakpoint in \(#file):\(#line) and observe the call stack." +
+                        "  Error: \(error)" +
+                        "  Key: \(key)" +
+                        "  Fallback: \(defaultValue)"
+                    )
+                    return defaultValue
+                }
+            }
+            set {
+                do {
+                    try userDefaults.set(newValue, forKey: key)
+                } catch {
+                    print(
+                        "⚠️ Encodable failure anomaly was detected." +
+                        "  Debugging: To debug this issue you can set a breakpoint in \(#file):\(#line) and observe the call stack." +
+                        "  Error: \(error)" +
+                        "  Key: \(key)" +
+                        "  Value: \(newValue)"
+                    )
+                }
+            }
+        }
+
+        public var projectedValue: CodableBinding<T> {
+            return self
+        }
+
+        public init(userDefaults: UserDefaults = .standard, key: Key<T>, defaultValue: T) {
+            self.userDefaults = userDefaults
+            self.key = key
+            self.defaultValue = defaultValue
+        }
+    }
+}
+
+private func checkCodable<T>(_ type: T) {
+    precondition(
+        [
+            Int.self,
+            Float.self,
+            Double.self,
+            Bool.self,
+            Data.self,
+            String.self,
+            URL.self,
+            LosslessStringConvertible.self,
+            [Any].self,
+            [String].self,
+            [String: Any].self,
+            NSObject.self
+        ].contains(where: { $0 is T }),
+        "⚠️ Codable Property Wrapper do not support yet." +
+        "  Use UserDefaults.CodableBinding instead or use subscript of UserDefaults instance without using Property Wrapper."
+    )
 }

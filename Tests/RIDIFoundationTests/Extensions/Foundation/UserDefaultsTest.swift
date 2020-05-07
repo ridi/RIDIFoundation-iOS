@@ -108,6 +108,33 @@ final class UserDefaultsTests: XCTestCase {
         )
     }
 
+    func testCodableBinding() {
+        struct Foo: Codable, Equatable {
+            let bar: String
+            
+            static func == (lhs: Foo, rhs: Foo) -> Bool {
+                return lhs.bar == rhs.bar
+            }
+        }
+
+        struct Test {
+            struct Keys {
+                static let test = UserDefaults.Key(UUID().uuidString, valueType: Foo.self)
+            }
+
+            @UserDefaults.CodableBinding(key: Keys.test, defaultValue: Foo(bar: "bar"))
+            static var value: Foo
+        }
+
+        let value = Foo(bar: "foo")
+        Test.value = value
+
+        XCTAssertEqual(
+            Test.value,
+            value
+        )
+    }
+
     static var allTests = [
         ("testBinding", testBinding),
         ("testSubscript", testSubscript),
@@ -115,6 +142,7 @@ final class UserDefaultsTests: XCTestCase {
         ("testFloatSubscript", testFloatSubscript),
         ("testDoubleSubscript", testDoubleSubscript),
         ("testBoolSubscript", testBoolSubscript),
-        ("testCodable", testCodable)
+        ("testCodable", testCodable),
+        ("testCodableBinding", testCodableBinding)
     ]
 }
