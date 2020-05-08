@@ -262,11 +262,11 @@ extension UserDefaults {
                     return try userDefaults.object(forKey: key) ?? defaultValue
                 } catch {
                     print(
-                        "⚠️ Decodable failure anomaly was detected." +
-                        "  Debugging: To debug this issue you can set a breakpoint in \(#file):\(#line) and observe the call stack." +
-                        "  Error: \(error)" +
-                        "  Key: \(key)" +
-                        "  Fallback: \(defaultValue)"
+                        "⚠️ Decodable failure anomaly was detected.\n" +
+                        "  Debugging: To debug this issue you can set a breakpoint in \(#file):\(#line) and observe the call stack.\n" +
+                        "  Error: \(error)\n" +
+                        "  Key: \(key)\n" +
+                        "  Fallback: \(defaultValue)\n"
                     )
                     return defaultValue
                 }
@@ -276,11 +276,11 @@ extension UserDefaults {
                     try userDefaults.set(newValue, forKey: key)
                 } catch {
                     print(
-                        "⚠️ Encodable failure anomaly was detected." +
-                        "  Debugging: To debug this issue you can set a breakpoint in \(#file):\(#line) and observe the call stack." +
-                        "  Error: \(error)" +
-                        "  Key: \(key)" +
-                        "  Value: \(newValue)"
+                        "⚠️ Encodable failure anomaly was detected.\n" +
+                        "  Debugging: To debug this issue you can set a breakpoint in \(#file):\(#line) and observe the call stack.\n" +
+                        "  Error: \(error)\n" +
+                        "  Key: \(key)\n" +
+                        "  Value: \(newValue)\n"
                     )
                 }
             }
@@ -314,7 +314,7 @@ private func checkCodable<T>(_ type: T) {
             [String: Any].self,
             NSObject.self
         ].contains(where: { $0 is T }),
-        "⚠️ Codable Property Wrapper do not support yet." +
-        "  Use UserDefaults.CodableBinding instead or use subscript of UserDefaults instance without using Property Wrapper."
+        "⚠️ Codable Property Wrapper do not support yet.\n" +
+        "  Use UserDefaults.CodableBinding instead or use subscript of UserDefaults instance without using Property Wrapper.\n"
     )
 }
