@@ -2,6 +2,9 @@ language: swift
 os: osx
 osx_image: xcode11.4
 
+branches:
+  except: /^feature\//
+
 script:
   - swift test -v
 
