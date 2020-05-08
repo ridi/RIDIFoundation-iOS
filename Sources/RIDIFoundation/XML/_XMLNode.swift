@@ -21,7 +21,7 @@ extension _XMLNode {
                 return nil
             }
 
-            if indexPath.count > 0 {
+            if !indexPath.isEmpty {
                 return children[index][indexPath]
             } else {
                 return children[index]
@@ -36,7 +36,7 @@ extension _XMLNode {
                 fatalError()
             }
 
-            if indexPath.count > 0 {
+            if !indexPath.isEmpty {
                 guard var child = children[index] as? _XMLNode else {
                     fatalError()
                 }

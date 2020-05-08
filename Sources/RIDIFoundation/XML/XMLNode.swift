@@ -62,7 +62,7 @@ extension XMLNode {
             }
         }()
 
-        if paths.dropFirst().count == 0 {
+        if paths.dropFirst().isEmpty {
             return elements ?? []
         } else {
             return try elements?.flatMap {

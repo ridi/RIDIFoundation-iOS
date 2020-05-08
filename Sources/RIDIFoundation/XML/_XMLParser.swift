@@ -54,7 +54,7 @@ extension _XMLParser: XMLParserDelegate {
 
         currentElement = newElement
 
-        guard xmlDocumentCurrentIndexPath.count > 0 else {
+        guard !xmlDocumentCurrentIndexPath.isEmpty else {
             newElement.parent = xmlDocument
             xmlDocument.children!.append(newElement)
             xmlDocumentCurrentIndexPath.append(xmlDocument.children!.endIndex - 1)
@@ -83,7 +83,7 @@ extension _XMLParser: XMLParserDelegate {
 
             xmlDocumentCurrentIndexPath.removeLast(xmlDocumentCurrentIndexPath.count - parentElementIndexPath.count + 1)
             break
-        } while (parentElementIndexPath.count > 0)
+        } while (!parentElementIndexPath.isEmpty)
     }
 
     func parser(_ parser: XMLParser, foundCharacters string: String) {
