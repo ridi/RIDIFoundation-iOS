@@ -21,6 +21,17 @@ final class XMLTests: XCTestCase {
         XCTAssertEqual(xmlDocument.children?[0].children?[3].stringValue, "Don't forget me this weekend!")
     }
 
+    func testXMLSubscriptByXPathNote() throws {
+        let xmlData = try Data(contentsOf: URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("note.xml"))
+
+        let xmlDocument = try XMLDocument(data: xmlData)
+
+        XCTAssertEqual(xmlDocument[xPath: "/note/to"].first?.name, "to")
+        XCTAssertEqual(xmlDocument[xPath: "/note/to"].first?.stringValue, "Tove")
+        XCTAssertEqual(xmlDocument[xPath: "/note/body"].first?.name, "body")
+        XCTAssertEqual(xmlDocument[xPath: "/note/body"].first?.stringValue, "Don't forget me this weekend!")
+    }
+
     func testXMLInitContainer() throws {
         let xmlData = try Data(contentsOf: URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("container.xml"))
 
@@ -46,20 +57,27 @@ final class XMLTests: XCTestCase {
         XCTAssertEqual(rootfileElement?.attributes?["media-type"].first?.stringValue, "application/oebps-package+xml")
     }
 
-    func testXMLSubscriptByElementsName() throws {
-        let xmlData = try Data(contentsOf: URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("note.xml"))
+    func testXMLSubscriptByXPathContainer() throws {
+        let xmlData = try Data(contentsOf: URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("container.xml"))
 
         let xmlDocument = try XMLDocument(data: xmlData)
 
-        XCTAssertEqual(xmlDocument[xPath: "/note/to"].first?.name, "to")
-        XCTAssertEqual(xmlDocument[xPath: "/note/to"].first?.stringValue, "Tove")
-        XCTAssertEqual(xmlDocument[xPath: "/note/body"].first?.name, "body")
-        XCTAssertEqual(xmlDocument[xPath: "/note/body"].first?.stringValue, "Don't forget me this weekend!")
+        let rootfileNode = xmlDocument[xPath: "//rootfile"].first
+        XCTAssertNotNil(rootfileNode)
+
+        let rootfileElement = rootfileNode as? XMLElement
+        XCTAssertNotNil(rootfileElement)
+
+        XCTAssertEqual(rootfileElement?.name, "rootfile")
+        XCTAssertEqual(rootfileElement?.attributes?["full-path"].first?.stringValue, "OEBPS/content.opf")
+        XCTAssertEqual(rootfileElement?.attributes?["media-type"].first?.stringValue, "application/oebps-package+xml")
     }
 
     static var allTests = [
         ("testXMLInitNote", testXMLInitNote),
+        ("testXMLSubscriptByXPathNote", testXMLSubscriptByXPathNote),
         ("testXMLInitContainer", testXMLInitContainer),
+        ("testXMLSubscriptByXPathContainer", testXMLSubscriptByXPathContainer),
     ]
 }
 

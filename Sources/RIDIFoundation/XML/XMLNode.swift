@@ -51,17 +51,34 @@ extension XMLNode {
         let paths = xPath.split(separator: "/")
         let firstPath = paths.first.flatMap { String($0) }
 
-        guard let elements = children?.compactMap({ $0 as? XMLElement }).filter({ $0.name == firstPath }) else {
-            return []
-        }
+        let elements: [XMLElement]? = {
+            if
+                xPath.starts(with: "//"),
+                let self = self as? XMLDocument
+            {
+                return self.flattendChildren?.compactMap({ $0 as? XMLElement }).filter({ $0.name == firstPath })
+            } else {
+                return children?.compactMap({ $0 as? XMLElement }).filter({ $0.name == firstPath })
+            }
+        }()
 
         if paths.dropFirst().count == 0 {
-            return elements
+            return elements ?? []
         } else {
-            return try elements.flatMap {
+            return try elements?.flatMap {
                 try $0.nodes(forXPath: paths.dropFirst().joined(separator: "/"))
-            }
+            } ?? []
         }
+    }
+}
+
+extension XMLNode {
+    private var flattendChildren: [XMLNode]? {
+        guard let children = children else {
+            return nil
+        }
+
+        return children.flatMap { [$0] + ($0.flattendChildren ?? []) }
     }
 }
 
