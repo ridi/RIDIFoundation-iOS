@@ -30,3 +30,10 @@ jobs:
       osx_image: xcode11.4
     
   fast_finish: true
+
+notifications:
+  email: false
+  slack:
+    rooms:
+      secure: j8YoVfyCxpDLJit89dUTn1fw32MTsjy5CtsmG19b+xrDvlJP2S2z70NdXfYY7F7+zR6tldDmtj9X7lTmA9nEi/SQ9Q951TzLdCk+OKno89Bv52g/K30ibKhNzen7D58vf6/1/I+Z4ZslO9OozxRcnuVRT1NJdKNZUnpvoamfn6zt1yISxA3IYDPnqqZWmiDs/3nKMAi6/khWxCVRrjW1jgICyL73PCGnbMF83tXXAbqyP7Cqs1/fGRHZA9Empwl7PgRAv5OYePPU2eWk5Lgq7z1LRiRJys7fDyh2fHUmB6/Fy6TVdJPAkh5enzpKxT/YTsGkTc82o1RpmryPi+9P+RewYi5CwpcmSZM1MrGVNT2/zgOCT9eGoUGtbq8ER99yILdWutfZUNIAitVVD6YnWuH63tG7o8pACpjlocjdlb+0/yAkDuaNffy+Qzudzv9YPyaYFhz7uCMulah7Io/irvXredOkXRC2IvwlxnT2mbh/2d2KrpueFj0JaxNjfd0wQI9OlAX3mR+No+QGng3OeGa8NjVujjoGJwBmVl57bj+LlTH9aqWUmBGrmyyyVvc7vh22buJ4ha1dcRL4R50dlyxc2zKwlU7W3B5HzCZbWWwBV6YO3xRCGDB1kutiWYKiAFTWWhaQkMMgdmdZ1PoTly0dAPtnIcYZWpBZTu04byg=
+    on_success: change
