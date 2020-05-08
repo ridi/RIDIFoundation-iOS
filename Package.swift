@@ -31,5 +31,6 @@ let package = Package(
             name: "RIDIFoundationTests",
             dependencies: ["RIDIFoundation"]
         )
-    ]
+    ],
+    swiftLanguageVersions: [.version("5.2")]
 )
