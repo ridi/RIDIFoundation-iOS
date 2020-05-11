@@ -1,7 +1,6 @@
 import Foundation
 
 public class XMLElement: _XMLNode {
-    public internal(set) var rootDocument: XMLDocument?
     public internal(set) var parent: XMLNode?
     private var _children: [XMLNode] = []
     public internal(set) var children: [XMLNode]? {
@@ -9,7 +8,14 @@ public class XMLElement: _XMLNode {
             return _children
         }
         set {
-            _children = newValue ?? []
+            let newValue = newValue ?? []
+
+            _children = newValue.map {
+                var node = $0 as? _XMLNode
+                node?.parent = self
+
+                return node ?? $0
+            }
         }
     }
 

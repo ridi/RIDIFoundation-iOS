@@ -2,6 +2,7 @@ import Foundation
 
 protocol _XMLNode: XMLNode {
     var children: [XMLNode]? { get set }
+    var parent: XMLNode? { get set }
 }
 
 extension _XMLNode {

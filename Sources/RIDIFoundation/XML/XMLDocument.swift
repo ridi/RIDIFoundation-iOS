@@ -1,18 +1,26 @@
 import Foundation
 
 public class XMLDocument: XMLDocumentProtocol, _XMLNode {
-    private var _children: [XMLNode] = [] {
-        willSet {
-            precondition(newValue.filter({ $0 is XMLElement }).count <= 1)
-        }
+    public internal(set) var parent: XMLNode? {
+        get { return nil }
+        set {}
     }
 
+    private var _children: [XMLNode] = []
     public internal(set) var children: [XMLNode]? {
         get {
             return _children
         }
         set {
-            _children = newValue ?? []
+            let newValue = newValue ?? []
+
+            precondition(newValue.filter({ $0 is XMLElement }).count <= 1)
+            _children = newValue.map {
+                var node = $0 as? _XMLNode
+                node?.parent = self
+
+                return node ?? $0
+            }
         }
     }
 
@@ -33,9 +41,7 @@ public class XMLDocument: XMLDocumentProtocol, _XMLNode {
         }
     }
 
-    init() {
-
-    }
+    init() {}
 }
 
 public protocol XMLDocumentProtocol {}

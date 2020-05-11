@@ -41,7 +41,6 @@ extension _XMLParser: XMLParserDelegate {
         }
 
         let newElement = XMLElement()
-        newElement.rootDocument = xmlDocument
         newElement.name = elementName
         newElement.attributes = attributeDict.map {
             XMLAttribute(
@@ -55,14 +54,12 @@ extension _XMLParser: XMLParserDelegate {
         currentElement = newElement
 
         guard !xmlDocumentCurrentIndexPath.isEmpty else {
-            newElement.parent = xmlDocument
             xmlDocument.children!.append(newElement)
             xmlDocumentCurrentIndexPath.append(xmlDocument.children!.endIndex - 1)
             return
         }
 
         var lastElement = xmlDocument[xmlDocumentCurrentIndexPath]
-        newElement.parent = lastElement
         lastElement?.children?.append(newElement)
         xmlDocumentCurrentIndexPath.append((xmlDocument[xmlDocumentCurrentIndexPath]?.children?.endIndex ?? 1) - 1)
     }

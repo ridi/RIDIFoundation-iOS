@@ -15,7 +15,7 @@ public protocol XMLNode {
 
 extension XMLNode {
     public var rootDocument: XMLDocument? {
-        return nil
+        return parent?.rootDocument ?? (parent as? XMLDocument)
     }
 
     public var parent: XMLNode? {
@@ -73,7 +73,7 @@ extension XMLNode {
 }
 
 extension XMLNode {
-    private var flattendChildren: [XMLNode]? {
+    var flattendChildren: [XMLNode]? {
         guard let children = children else {
             return nil
         }
