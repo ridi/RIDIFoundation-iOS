@@ -19,8 +19,15 @@ public class XMLElement: _XMLNode {
         }
     }
 
-
     public internal(set) var name: String?
     public internal(set) var stringValue: String?
     public internal(set) var attributes: [XMLNode]?
+
+    public var xPath: String? {
+        return name.flatMap { name in
+            parent.flatMap { parent in
+                (parent.xPath ?? "") + "/" + name
+            }
+        }
+    }
 }
