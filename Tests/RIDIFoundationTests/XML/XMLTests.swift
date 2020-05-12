@@ -26,10 +26,17 @@ final class XMLTests: XCTestCase {
 
         let xmlDocument = try XMLDocument(data: xmlData)
 
-        XCTAssertEqual(xmlDocument[xPath: "/note/to"].first?.name, "to")
-        XCTAssertEqual(xmlDocument[xPath: "/note/to"].first?.stringValue, "Tove")
-        XCTAssertEqual(xmlDocument[xPath: "/note/body"].first?.name, "body")
-        XCTAssertEqual(xmlDocument[xPath: "/note/body"].first?.stringValue, "Don't forget me this weekend!")
+        let toElements = xmlDocument[xPath: "//to"]
+        XCTAssertEqual(toElements.count, 1)
+        XCTAssertEqual(toElements.first?.name, "to")
+        XCTAssertEqual(toElements.first?.stringValue, "Tove")
+        XCTAssertEqual(toElements.first?.xPath, "/note/to")
+
+        let noteBodyElements = xmlDocument[xPath: "/note/body"]
+        XCTAssertEqual(noteBodyElements.count, 1)
+        XCTAssertEqual(noteBodyElements.first?.name, "body")
+        XCTAssertEqual(noteBodyElements.first?.stringValue, "Don't forget me this weekend!")
+        XCTAssertEqual(noteBodyElements.first?.xPath, "/note/body")
     }
 
     func testXMLInitContainer() throws {
