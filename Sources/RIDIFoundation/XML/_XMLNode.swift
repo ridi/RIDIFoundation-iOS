@@ -6,7 +6,7 @@ protocol _XMLNode: XMLNode {
 }
 
 extension _XMLNode {
-    public subscript(indexPath: IndexPath) -> _XMLNode? {
+    subscript(indexPath: IndexPath) -> _XMLNode? {
         get {
             var indexPath = indexPath
 
@@ -14,7 +14,7 @@ extension _XMLNode {
                 return self
             }
 
-            guard let children = children?.compactMap({ $0 as? _XMLNode }) else {
+            guard let children = children else {
                 return nil
             }
 
@@ -23,9 +23,9 @@ extension _XMLNode {
             }
 
             if !indexPath.isEmpty {
-                return children[index][indexPath]
+                return (children[index] as? _XMLNode)?[indexPath]
             } else {
-                return children[index]
+                return children[index] as? _XMLNode
             }
         }
         set {
