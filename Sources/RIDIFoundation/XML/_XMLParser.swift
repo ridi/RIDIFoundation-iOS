@@ -44,8 +44,6 @@ extension _XMLParser: XMLParserDelegate {
         newElement.name = elementName
         newElement.attributes = attributeDict.map {
             XMLAttribute(
-                rootDocument: xmlDocument,
-                parent: newElement,
                 name: $0.key,
                 stringValue: $0.value
             )
