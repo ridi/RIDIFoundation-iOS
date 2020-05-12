@@ -31,12 +31,14 @@ final class XMLTests: XCTestCase {
         XCTAssertEqual(toElements.first?.name, "to")
         XCTAssertEqual(toElements.first?.stringValue, "Tove")
         XCTAssertEqual(toElements.first?.xPath, "/note/to")
+        XCTAssert(toElements.first?.rootDocument === xmlDocument)
 
         let noteBodyElements = xmlDocument[xPath: "/note/body"]
         XCTAssertEqual(noteBodyElements.count, 1)
         XCTAssertEqual(noteBodyElements.first?.name, "body")
         XCTAssertEqual(noteBodyElements.first?.stringValue, "Don't forget me this weekend!")
         XCTAssertEqual(noteBodyElements.first?.xPath, "/note/body")
+        XCTAssert(noteBodyElements.first?.rootDocument === xmlDocument)
     }
 
     func testXMLInitContainer() throws {
