@@ -48,4 +48,8 @@ public class XMLElement: _XMLNode {
             }
         }
     }
+
+    open func attribute(forName name: String) -> XMLNode? {
+        attributes?.first(where: { $0.name == name })
+    }
 }
