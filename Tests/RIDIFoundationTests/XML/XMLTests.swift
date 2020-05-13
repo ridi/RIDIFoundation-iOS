@@ -102,6 +102,30 @@ final class XMLTests: XCTestCase {
         }
     }
 
+    func testDeepDepthNavipointsXMLInit() throws {
+        let xmlData = try Data(contentsOf: URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("deep-depth-navipoints.xml"))
+
+        measureMetrics([.wallClockTime], automaticallyStartMeasuring: false) {
+            startMeasuring()
+            let xmlDocument = try! XMLDocument(data: xmlData)
+            stopMeasuring()
+
+            XCTAssertEqual(xmlDocument.children?.count, 1)
+        }
+    }
+
+    func testExcessiveNavpointsXMLInit() throws {
+        let xmlData = try Data(contentsOf: URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("excessive-navpoints.xml"))
+
+        measureMetrics([.wallClockTime], automaticallyStartMeasuring: false) {
+            startMeasuring()
+            let xmlDocument = try! XMLDocument(data: xmlData)
+            stopMeasuring()
+
+            XCTAssertEqual(xmlDocument.children?.count, 1)
+        }
+    }
+
     static var allTests = [
         ("testXMLInitNote", testXMLInitNote),
         ("testXMLSubscriptByXPathNote", testXMLSubscriptByXPathNote),
