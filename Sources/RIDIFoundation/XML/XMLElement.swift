@@ -1,47 +1,20 @@
 import Foundation
 
-public class XMLElement: _XMLNode {
-    public internal(set) var parent: XMLNode?
-    private var _children: [XMLNode] = []
-    public internal(set) var children: [XMLNode]? {
-        get {
-            return _children
-        }
-        set {
-            let newValue = newValue ?? []
-
-            _children = newValue.map {
-                var node = $0 as? _XMLNode
-                node?.parent = self
-
-                return node ?? $0
-            }
-        }
-    }
-
-    public internal(set) var name: String?
-    public internal(set) var stringValue: String?
-
-    private var _attributes: [XMLNode]?
+public class XMLElement: XMLNode {
     public internal(set) var attributes: [XMLNode]? {
-        get {
-            return _attributes
+        willSet {
+            attributes?.forEach {
+                $0.parent = nil
+            }
         }
-        set {
-            let newValue = newValue
-
-            _attributes = newValue.flatMap {
-                $0.map {
-                    var node = $0 as? _XMLNode
-                    node?.parent = self
-
-                    return node ?? $0
-                }
+        didSet {
+            attributes?.forEach {
+                $0.parent = self
             }
         }
     }
 
-    public var xPath: String? {
+    public override var xPath: String? {
         return name.flatMap { name in
             parent.flatMap { parent in
                 (parent.xPath ?? "") + "/" + name
@@ -49,7 +22,26 @@ public class XMLElement: _XMLNode {
         }
     }
 
-    open func attribute(forName name: String) -> XMLNode? {
+    override func nodes(forXPath xPath: String) throws -> [XMLNode] {
+        guard !xPath.starts(with: "@") else {
+            let paths = xPath.split(separator: "/")
+            let firstPath = paths.first.flatMap { String($0.dropFirst(1)) }
+
+            let attributes = self.attributes?.filter({ $0.name == firstPath })
+
+            if paths.dropFirst().isEmpty {
+                return attributes ?? []
+            } else {
+                return try attributes?.flatMap {
+                    try $0.nodes(forXPath: paths.dropFirst().joined(separator: "/"))
+                } ?? []
+            }
+        }
+
+        return try super.nodes(forXPath: xPath)
+    }
+
+    public func attribute(forName name: String) -> XMLNode? {
         attributes?.first(where: { $0.name == name })
     }
 }

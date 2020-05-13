@@ -1,27 +1,9 @@
 import Foundation
 
-public class XMLDocument: XMLDocumentProtocol, _XMLNode {
-    public internal(set) var parent: XMLNode? {
+public class XMLDocument: XMLNode, XMLDocumentProtocol {
+    public internal(set) override var parent: XMLNode? {
         get { return nil }
         set {}
-    }
-
-    private var _children: [XMLNode] = []
-    public internal(set) var children: [XMLNode]? {
-        get {
-            return _children
-        }
-        set {
-            let newValue = newValue ?? []
-
-            precondition(newValue.filter({ $0 is XMLElement }).count <= 1)
-            _children = newValue.map {
-                var node = $0 as? _XMLNode
-                node?.parent = self
-
-                return node ?? $0
-            }
-        }
     }
 
     public internal(set) var rootElement: XMLElement? {
@@ -41,7 +23,37 @@ public class XMLDocument: XMLDocumentProtocol, _XMLNode {
         }
     }
 
-    init() {}
+    public internal(set) override var stringValue: String? {
+        get { return nil }
+        set {}
+    }
+
+    override func nodes(forXPath xPath: String) throws -> [XMLNode] {
+        guard !xPath.starts(with: "//") else {
+            guard !xPath.dropFirst(2).starts(with: "@") else {
+                return try flattendChildren?.flatMap { try $0.nodes(forXPath: String(xPath.dropFirst(2))) } ?? []
+            }
+
+            let paths = xPath.split(separator: "/")
+            let firstPath = paths.first.flatMap { String($0) }
+
+            let elements = flattendChildren?.filter({ $0.name == firstPath })
+
+            if paths.dropFirst().isEmpty {
+                return elements ?? []
+            } else {
+                return try elements?.flatMap {
+                    try $0.nodes(forXPath: paths.dropFirst().joined(separator: "/"))
+                } ?? []
+            }
+        }
+
+        guard !xPath.starts(with: "/") else {
+            return try super.nodes(forXPath: String(xPath.dropFirst(1)))
+        }
+
+        return try super.nodes(forXPath: xPath)
+    }
 }
 
 public protocol XMLDocumentProtocol {}
