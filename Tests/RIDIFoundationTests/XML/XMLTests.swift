@@ -67,7 +67,6 @@ final class XMLTests: XCTestCase {
             XCTAssertEqual(rootfilesElement?.children?.count, 1)
 
             let rootfileElement = rootfilesElement?.children?[0] as? XMLElement
-
             XCTAssertEqual(rootfileElement?.name, "rootfile")
             XCTAssertEqual(rootfileElement?.attributes?["full-path"].first?.stringValue, "OEBPS/content.opf")
             XCTAssertEqual(rootfileElement?.attributes?["media-type"].first?.stringValue, "application/oebps-package+xml")
@@ -78,6 +77,10 @@ final class XMLTests: XCTestCase {
         let xmlData = try Data(contentsOf: URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("container.xml"))
 
         let xmlDocument = try XMLDocument(data: xmlData)
+
+        let xmlnsNodes = xmlDocument[xPath: "//@xmlns"]
+        XCTAssertEqual(xmlnsNodes.count, 1)
+        XCTAssertEqual(xmlnsNodes.first?.stringValue, "urn:oasis:names:tc:opendocument:xmlns:container")
 
         let rootfileNodes = xmlDocument[xPath: "//rootfile"]
         XCTAssertEqual(rootfileNodes.count, 1)
