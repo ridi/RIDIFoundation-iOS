@@ -318,7 +318,7 @@ private func checkCodable<T>(_ type: T) {
             [String: Any].self,
             NSObject.self
         ].contains(where: { $0 is T }),
-        "⚠️ Codable Property Wrapper do not support yet.\n" +
-        "  Use UserDefaults.CodableBinding instead or use subscript of UserDefaults instance without using Property Wrapper.\n"
+        "⚠️ Codable do not support yet.\n" +
+        "  Use UserDefaults.CodableBinding instead or use UserDefaults.object(forKey:) or UserDefaults.set(_:forKey:).\n"
     )
 }
