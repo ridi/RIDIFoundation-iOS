@@ -25,6 +25,8 @@ jobs:
       script: mint run SwiftLint swiftlint lint --reporter emoji
 
     - stage: Tests
+      osx_image: xcode11.3
+    - stage: Tests
       osx_image: xcode11.4
     
   fast_finish: true
