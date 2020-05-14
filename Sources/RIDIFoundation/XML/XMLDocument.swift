@@ -6,6 +6,10 @@ public class XMLDocument: XMLNode, XMLDocumentProtocol {
         set {}
     }
 
+    public override var level: Int {
+        return 0
+    }
+
     public internal(set) var rootElement: XMLElement? {
         get {
             return children?.lazy.compactMap { $0 as? XMLElement }.first

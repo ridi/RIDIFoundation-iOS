@@ -26,6 +26,14 @@ open class XMLNode {
     open internal(set) var name: String?
     open internal(set) var stringValue: String?
 
+    open var level: Int {
+        if let parent = parent, parent !== rootDocument {
+            return parent.level + 1
+        } else {
+            return 0
+        }
+    }
+
     var xPath: String? {
         return nil
     }
