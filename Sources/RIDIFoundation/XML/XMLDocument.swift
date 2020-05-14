@@ -1,16 +1,16 @@
 import Foundation
 
-public class XMLDocument: XMLNode, XMLDocumentProtocol {
-    public internal(set) override var parent: XMLNode? {
+open class XMLDocument: XMLNode, XMLDocumentProtocol {
+    open internal(set) override var parent: XMLNode? {
         get { return nil }
         set {}
     }
 
-    public override var level: Int {
+    open override var level: Int {
         return 0
     }
 
-    public internal(set) var rootElement: XMLElement? {
+    open internal(set) var rootElement: XMLElement? {
         get {
             return children?.lazy.compactMap { $0 as? XMLElement }.first
         }
@@ -29,7 +29,7 @@ public class XMLDocument: XMLNode, XMLDocumentProtocol {
         }
     }
 
-    public internal(set) override var stringValue: String? {
+    open internal(set) override var stringValue: String? {
         get { return nil }
         set {}
     }

@@ -1,7 +1,7 @@
 import Foundation
 
-public class XMLElement: XMLNode {
-    public internal(set) var attributes: [XMLNode]? {
+open class XMLElement: XMLNode {
+    open internal(set) var attributes: [XMLNode]? {
         willSet {
             attributes?.forEach {
                 $0.parent = nil
@@ -14,7 +14,7 @@ public class XMLElement: XMLNode {
         }
     }
 
-    public override var xPath: String? {
+    open override var xPath: String? {
         return name.flatMap { name in
             parent.flatMap { parent in
                 (parent.xPath ?? "") + "/" + name
@@ -41,7 +41,7 @@ public class XMLElement: XMLNode {
         return try super.nodes(forXPath: xPath)
     }
 
-    public func attribute(forName name: String) -> XMLNode? {
+    open func attribute(forName name: String) -> XMLNode? {
         attributes?.first(where: { $0.name == name })
     }
 }
