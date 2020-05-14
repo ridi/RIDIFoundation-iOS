@@ -49,12 +49,12 @@ extension _XMLParser: XMLParserDelegate {
         isNodeOpened = true
 
         guard !xmlDocumentCurrentIndexPath.isEmpty else {
-            xmlDocument!.children = (xmlDocument!.children ?? []) + [newElement]
+            xmlDocument!.addChild(newElement)
             xmlDocumentCurrentIndexPath.append(xmlDocument!.children!.endIndex - 1)
             return
         }
 
-        xmlDocument![xmlDocumentCurrentIndexPath]!.children = (xmlDocument![xmlDocumentCurrentIndexPath]!.children ?? []) + [newElement]
+        xmlDocument![xmlDocumentCurrentIndexPath]!.addChild(newElement)
         xmlDocumentCurrentIndexPath.append((xmlDocument![xmlDocumentCurrentIndexPath]?.children?.endIndex ?? 1) - 1)
     }
 

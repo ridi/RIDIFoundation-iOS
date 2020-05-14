@@ -6,16 +6,20 @@ open class XMLNode {
     }
 
     open internal(set) weak var parent: XMLNode?
+
+    var _children: [XMLNode]?
     open internal(set) var children: [XMLNode]? {
-        willSet {
-            children?.forEach {
-                $0.parent = nil
-            }
+        get {
+            return _children
         }
-        didSet {
-            children?.forEach {
-                $0.parent = self
-            }
+        set {
+            let oldValue = _children
+
+            newValue?.forEach { $0.parent = self }
+
+            _children = newValue
+
+            oldValue?.forEach { $0.parent = nil }
         }
     }
 
@@ -26,9 +30,20 @@ open class XMLNode {
         return nil
     }
 
+    required public init() {}
+
+    required public init(_ xmlNode: XMLNode) {
+        self.parent = xmlNode.parent
+
+        self.name = xmlNode.name
+        self.stringValue = xmlNode.stringValue
+
+        self.children = xmlNode.children?.map { type(of: $0).init($0) }
+    }
+
     // FIXME: Not support predicate yet!
     func nodes(forXPath xPath: String) throws -> [XMLNode] {
-        guard !xPath.starts(with: "/") || (self is XMLDocument) else {
+        guard !xPath.starts(with: "/") else {
             return try rootDocument?.nodes(forXPath: xPath) ?? []
         }
 
@@ -50,14 +65,32 @@ open class XMLNode {
         }
     }
 
-    required public init() {}
+    func insertChild(_ child: XMLNode, at index: Int) {
+        child.parent = self
 
-    required public init(_ xmlNode: XMLNode) {
-        self.parent = xmlNode.parent
-        self.children = xmlNode.children?.map { type(of: $0).init($0) }
+        _children = children ?? []
+        _children!.insert(child, at: index)
+    }
 
-        self.name = xmlNode.name
-        self.stringValue = xmlNode.stringValue
+    func insertChildren(_ children: [XMLNode], at index: Int) {
+        children.forEach { $0.parent = self }
+
+        _children = _children ?? []
+        _children!.insert(contentsOf: children, at: index)
+    }
+
+    func removeChild(at index: Int) {
+        _children = children ?? []
+        let child = _children!.remove(at: index)
+
+        child.parent = nil
+    }
+
+    func addChild(_ child: XMLNode) {
+        child.parent = self
+
+        _children = children ?? []
+        _children!.append(child)
     }
 }
 
@@ -87,29 +120,22 @@ extension XMLNode {
         set {
             var indexPath = indexPath
 
-            var children = self.children ?? []
-
             guard let index = indexPath.popFirst() else {
                 fatalError()
             }
 
             if !indexPath.isEmpty {
-                let child = children[index]
-                child[indexPath] = newValue
-                children[index] = child
-                self.children = children
+                children![index][indexPath] = newValue
             } else {
                 if let newValue = newValue {
-                    if index == children.count {
-                        children.append(newValue)
+                    if index == (children?.count ?? 0) {
+                        addChild(newValue)
                     } else {
-                        children[index] = newValue
+                        insertChild(newValue, at: index)
                     }
                 } else {
-                    children.remove(at: index)
+                    removeChild(at: index)
                 }
-
-                self.children = children
             }
         }
     }

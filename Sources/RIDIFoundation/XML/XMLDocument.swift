@@ -11,15 +11,17 @@ public class XMLDocument: XMLNode, XMLDocumentProtocol {
             return children?.lazy.compactMap { $0 as? XMLElement }.first
         }
         set {
-            children?.removeAll(where: { $0 is XMLElement })
+            self.children = self.children?.filter { !($0 is XMLElement) }
 
             if let newValue = newValue {
-                if children != nil {
-                    children!.append(newValue)
-                } else {
-                    children = [newValue]
-                }
+                self.addChild(newValue)
             }
+        }
+    }
+
+    override var _children: [XMLNode]? {
+        willSet {
+            precondition(newValue?.filter({ $0 is XMLElement}).count ?? 0 <= 1)
         }
     }
 
