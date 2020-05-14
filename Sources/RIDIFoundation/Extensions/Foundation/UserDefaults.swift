@@ -119,19 +119,23 @@ extension UserDefaults {
         }
     }
 
-    open func object<T>(forKey key: Key<T>) throws -> T? where T: Decodable {
+    private struct JSONRoot<T: Codable>: Codable {
+        let root: T
+    }
+
+    open func object<T>(forKey key: Key<T>) throws -> T? where T: Codable {
         let decoder = JSONDecoder()
 
         return try data(forKey: key.rawValue).flatMap {
-            try decoder.decode(T.self, from: $0)
+            try decoder.decode(JSONRoot<T>.self, from: $0).root
         }
     }
 
-    open func set<T>(_ value: T?, forKey key: Key<T>) throws where T: Encodable {
+    open func set<T>(_ value: T?, forKey key: Key<T>) throws where T: Codable {
         let encoder = JSONEncoder()
 
         set(
-            try value.flatMap { try encoder.encode($0) },
+            try value.flatMap { try encoder.encode(JSONRoot<T>(root: $0)) },
             forKey: key.rawValue
         )
     }
