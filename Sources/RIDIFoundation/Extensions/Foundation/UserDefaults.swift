@@ -310,6 +310,7 @@ private func checkCodable<T>(_ type: T) {
             Double.self,
             Bool.self,
             Data.self,
+            Date.self,
             String.self,
             URL.self,
             LosslessStringConvertible.self,
