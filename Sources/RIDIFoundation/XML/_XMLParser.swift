@@ -81,6 +81,10 @@ extension _XMLParser: XMLParserDelegate {
             return
         }
 
-        xmlDocument![xmlDocumentCurrentIndexPath]!.stringValue = string
+        if xmlDocument![xmlDocumentCurrentIndexPath]!.stringValue != nil {
+            xmlDocument![xmlDocumentCurrentIndexPath]!.stringValue!.append(string)
+        } else {
+            xmlDocument![xmlDocumentCurrentIndexPath]!.stringValue = string
+        }
     }
 }
