@@ -303,7 +303,7 @@ extension UserDefaults {
 }
 
 private func checkCodable<T>(_ type: T) {
-    precondition(
+    assert(
         [
             Int.self,
             Float.self,
