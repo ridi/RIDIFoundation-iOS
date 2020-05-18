@@ -265,7 +265,7 @@ extension UserDefaults {
                 do {
                     return try userDefaults.object(forKey: key) ?? defaultValue
                 } catch {
-                    print(
+                    debugPrint(
                         "⚠️ Decodable failure anomaly was detected.\n" +
                         "  Debugging: To debug this issue you can set a breakpoint in \(#file):\(#line) and observe the call stack.\n" +
                         "  Error: \(error)\n" +
@@ -279,7 +279,7 @@ extension UserDefaults {
                 do {
                     try userDefaults.set(newValue, forKey: key)
                 } catch {
-                    print(
+                    debugPrint(
                         "⚠️ Encodable failure anomaly was detected.\n" +
                         "  Debugging: To debug this issue you can set a breakpoint in \(#file):\(#line) and observe the call stack.\n" +
                         "  Error: \(error)\n" +
