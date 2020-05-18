@@ -76,7 +76,7 @@ open class XMLNode {
     func insertChild(_ child: XMLNode, at index: Int) {
         child.parent = self
 
-        _children = children ?? []
+        _children = _children ?? []
         _children!.insert(child, at: index)
     }
 
@@ -97,7 +97,7 @@ open class XMLNode {
     func addChild(_ child: XMLNode) {
         child.parent = self
 
-        _children = children ?? []
+        _children = _children ?? []
         _children!.append(child)
     }
 }
