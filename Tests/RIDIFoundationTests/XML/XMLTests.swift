@@ -158,6 +158,24 @@ final class XMLTests: XCTestCase {
         }
     }
 
+    func testEmptyStringXMLInit() throws {
+        let xmlData = "".data(using: .utf8)!
+
+        XCTAssertThrowsError(try XMLDocument(data: xmlData)) {
+            XCTAssertEqual(($0 as NSError).domain, XMLParser.errorDomain)
+            XCTAssertEqual(($0 as NSError).code, XMLParser.ErrorCode.internalError.rawValue)
+        }
+    }
+
+    func testPrematureDocumentEndXMLInit() throws {
+        let xmlData = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>".data(using: .utf8)!
+
+        XCTAssertThrowsError(try XMLDocument(data: xmlData)) {
+            XCTAssertEqual(($0 as NSError).domain, XMLParser.errorDomain)
+            XCTAssertEqual(($0 as NSError).code, XMLParser.ErrorCode.prematureDocumentEndError.rawValue)
+        }
+    }
+
     static var allTests = [
         ("testNoteXMLInit", testNoteXMLInit),
         ("testNoteXMLSubscriptByXPath", testNoteXMLSubscriptByXPath),
