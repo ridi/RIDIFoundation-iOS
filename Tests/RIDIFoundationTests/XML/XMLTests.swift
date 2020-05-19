@@ -3,7 +3,7 @@ import XCTest
 @testable import class RIDIFoundation.XMLElement
 
 final class XMLTests: XCTestCase {
-    func testXMLInitNote() throws {
+    func testNoteXMLInit() throws {
         let xmlData = try Data(
             contentsOf: URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("note.xml")
         )
@@ -27,7 +27,7 @@ final class XMLTests: XCTestCase {
         }
     }
 
-    func testXMLSubscriptByXPathNote() throws {
+    func testNoteXMLSubscriptByXPath() throws {
         let xmlData = try Data(
             contentsOf: URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("note.xml")
         )
@@ -49,7 +49,7 @@ final class XMLTests: XCTestCase {
         XCTAssert(noteBodyElements.first?.rootDocument === xmlDocument)
     }
 
-    func testXMLInitContainer() throws {
+    func testContainerXMLInit() throws {
         let xmlData = try Data(
             contentsOf: URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("container.xml")
         )
@@ -85,7 +85,7 @@ final class XMLTests: XCTestCase {
         }
     }
 
-    func testXMLSubscriptByXPathContainer() throws {
+    func testContainerXMLSubscriptByXPath() throws {
         let xmlData = try Data(
             contentsOf: URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("container.xml")
         )
@@ -159,10 +159,12 @@ final class XMLTests: XCTestCase {
     }
 
     static var allTests = [
-        ("testXMLInitNote", testXMLInitNote),
-        ("testXMLSubscriptByXPathNote", testXMLSubscriptByXPathNote),
-        ("testXMLInitContainer", testXMLInitContainer),
-        ("testXMLSubscriptByXPathContainer", testXMLSubscriptByXPathContainer),
+        ("testNoteXMLInit", testNoteXMLInit),
+        ("testNoteXMLSubscriptByXPath", testNoteXMLSubscriptByXPath),
+        ("testContainerXMLInit", testContainerXMLInit),
+        ("testContainerXMLSubscriptByXPath", testContainerXMLSubscriptByXPath),
+        ("testExcessiveSpineItemsXMLInit", testExcessiveSpineItemsXMLInit),
+        ("testDeepDepthNavipointsXMLInit", testDeepDepthNavipointsXMLInit),
+        ("testExcessiveNavpointsXMLInit", testExcessiveNavpointsXMLInit)
     ]
 }
-
