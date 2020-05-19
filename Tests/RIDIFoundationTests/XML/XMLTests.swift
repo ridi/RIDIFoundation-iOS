@@ -183,6 +183,8 @@ final class XMLTests: XCTestCase {
         ("testContainerXMLSubscriptByXPath", testContainerXMLSubscriptByXPath),
         ("testExcessiveSpineItemsXMLInit", testExcessiveSpineItemsXMLInit),
         ("testDeepDepthNavipointsXMLInit", testDeepDepthNavipointsXMLInit),
-        ("testExcessiveNavpointsXMLInit", testExcessiveNavpointsXMLInit)
+        ("testExcessiveNavpointsXMLInit", testExcessiveNavpointsXMLInit),
+        ("testEmptyStringXMLInit", testEmptyStringXMLInit),
+        ("testPrematureDocumentEndXMLInit", testPrematureDocumentEndXMLInit)
     ]
 }
