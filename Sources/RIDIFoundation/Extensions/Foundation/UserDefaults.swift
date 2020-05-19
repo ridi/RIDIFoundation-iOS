@@ -119,20 +119,23 @@ extension UserDefaults {
         }
     }
 
-    open func object<T>(forKey key: Key<T>) throws -> T? where T: Decodable {
-        let decoder = PropertyListDecoder()
+    private struct JSONRoot<T: Codable>: Codable {
+        let root: T
+    }
+
+    open func object<T>(forKey key: Key<T>) throws -> T? where T: Codable {
+        let decoder = JSONDecoder()
 
         return try data(forKey: key.rawValue).flatMap {
-            try decoder.decode(T.self, from: $0)
+            try decoder.decode(JSONRoot<T>.self, from: $0).root
         }
     }
 
-    open func set<T>(_ value: T?, forKey key: Key<T>) throws where T: Encodable {
-        let encoder = PropertyListEncoder()
-        encoder.outputFormat = .binary
+    open func set<T>(_ value: T?, forKey key: Key<T>) throws where T: Codable {
+        let encoder = JSONEncoder()
 
         set(
-            try value.flatMap { try encoder.encode($0) },
+            try value.flatMap { try encoder.encode(JSONRoot<T>(root: $0)) },
             forKey: key.rawValue
         )
     }
@@ -188,6 +191,7 @@ extension UserDefaults {
         }
 
         public init(userDefaults: UserDefaults = .standard, key: Key<T>, defaultValue: T) {
+            checkCodable(T.self)
             self.userDefaults = userDefaults
             self.key = key
             self.defaultValue = defaultValue
@@ -214,6 +218,7 @@ extension UserDefaults {
         }
 
         public init(userDefaults: UserDefaults = .standard, key: Key<T>, defaultValue: @autoclosure @escaping () -> T) {
+            checkCodable(T.self)
             self.userDefaults = userDefaults
             self.key = key
             self.defaultValue = defaultValue
@@ -243,8 +248,78 @@ extension UserDefaults {
         }
 
         public init(userDefaults: UserDefaults = .standard, key: Key<T>) {
+            checkCodable(T.self)
             self.userDefaults = userDefaults
             self.key = key
         }
     }
+
+    @propertyWrapper
+    public struct CodableBinding<T: Codable>: UserDefaultsBindable {
+        public let userDefaults: UserDefaults
+        public let key: Key<T>
+        public let defaultValue: T
+
+        public var wrappedValue: T {
+            get {
+                do {
+                    return try userDefaults.object(forKey: key) ?? defaultValue
+                } catch {
+                    debugPrint(
+                        "⚠️ Decodable failure anomaly was detected.\n" +
+                        "  Debugging: To debug this issue you can set a breakpoint in \(#file):\(#line) and observe the call stack.\n" +
+                        "  Error: \(error)\n" +
+                        "  Key: \(key)\n" +
+                        "  Fallback: \(defaultValue)\n"
+                    )
+                    return defaultValue
+                }
+            }
+            set {
+                do {
+                    try userDefaults.set(newValue, forKey: key)
+                } catch {
+                    debugPrint(
+                        "⚠️ Encodable failure anomaly was detected.\n" +
+                        "  Debugging: To debug this issue you can set a breakpoint in \(#file):\(#line) and observe the call stack.\n" +
+                        "  Error: \(error)\n" +
+                        "  Key: \(key)\n" +
+                        "  Value: \(newValue)\n"
+                    )
+                }
+            }
+        }
+
+        public var projectedValue: CodableBinding<T> {
+            return self
+        }
+
+        public init(userDefaults: UserDefaults = .standard, key: Key<T>, defaultValue: T) {
+            self.userDefaults = userDefaults
+            self.key = key
+            self.defaultValue = defaultValue
+        }
+    }
+}
+
+private func checkCodable<T>(_ type: T) {
+    assert(
+        [
+            Int.self,
+            Float.self,
+            Double.self,
+            Bool.self,
+            Data.self,
+            Date.self,
+            String.self,
+            URL.self,
+            LosslessStringConvertible.self,
+            [Any].self,
+            [String].self,
+            [String: Any].self,
+            NSObject.self
+        ].contains(where: { $0 is T }),
+        "⚠️ Codable do not support yet.\n" +
+        "  Use UserDefaults.CodableBinding instead or use UserDefaults.object(forKey:) or UserDefaults.set(_:forKey:).\n"
+    )
 }
