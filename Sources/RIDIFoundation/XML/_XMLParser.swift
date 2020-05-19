@@ -19,6 +19,7 @@ class _XMLParser: Operation {
 
     override func main() {
         xmlParser.parse()
+        result = result ?? xmlParser.parserError.flatMap { .failure($0) }
     }
 }
 
@@ -29,6 +30,10 @@ extension _XMLParser: XMLParserDelegate {
 
     func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
         result = .failure(parseError)
+    }
+
+    func parser(_ parser: XMLParser, validationErrorOccurred validationError: Error) {
+        result = .failure(validationError)
     }
 
     func parserDidEndDocument(_ parser: XMLParser) {

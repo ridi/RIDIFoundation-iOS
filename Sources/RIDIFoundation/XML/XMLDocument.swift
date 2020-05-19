@@ -104,7 +104,7 @@ extension XMLDocumentProtocol {
         xmlParser.start()
 
         guard let result = xmlParser.result else {
-            throw POSIXError(.ENOSYS)
+            throw CocoaError(.featureUnsupported)
         }
 
         switch result {
