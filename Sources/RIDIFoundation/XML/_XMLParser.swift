@@ -40,7 +40,7 @@ extension _XMLParser: XMLParserDelegate {
         didStartElement elementName: String,
         namespaceURI: String?,
         qualifiedName qName: String?,
-        attributes attributeDict: [String : String] = [:]
+        attributes attributeDict: [String: String] = [:]
     ) {
         let newElement = XMLElement()
         newElement.name = elementName

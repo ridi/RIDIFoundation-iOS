@@ -4,7 +4,9 @@ import XCTest
 
 final class XMLTests: XCTestCase {
     func testXMLInitNote() throws {
-        let xmlData = try Data(contentsOf: URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("note.xml"))
+        let xmlData = try Data(
+            contentsOf: URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("note.xml")
+        )
 
         measureMetrics([.wallClockTime], automaticallyStartMeasuring: false) {
             startMeasuring()
@@ -26,7 +28,9 @@ final class XMLTests: XCTestCase {
     }
 
     func testXMLSubscriptByXPathNote() throws {
-        let xmlData = try Data(contentsOf: URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("note.xml"))
+        let xmlData = try Data(
+            contentsOf: URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("note.xml")
+        )
 
         let xmlDocument = try XMLDocument(data: xmlData)
 
@@ -46,7 +50,9 @@ final class XMLTests: XCTestCase {
     }
 
     func testXMLInitContainer() throws {
-        let xmlData = try Data(contentsOf: URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("container.xml"))
+        let xmlData = try Data(
+            contentsOf: URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("container.xml")
+        )
 
         measureMetrics([.wallClockTime], automaticallyStartMeasuring: false) {
             startMeasuring()
@@ -74,7 +80,9 @@ final class XMLTests: XCTestCase {
     }
 
     func testXMLSubscriptByXPathContainer() throws {
-        let xmlData = try Data(contentsOf: URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("container.xml"))
+        let xmlData = try Data(
+            contentsOf: URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("container.xml")
+        )
 
         let xmlDocument = try XMLDocument(data: xmlData)
         XCTAssertNotNil(xmlDocument.rootElement)
@@ -97,7 +105,9 @@ final class XMLTests: XCTestCase {
     }
 
     func testExcessiveSpineItemsXMLInit() throws {
-        let xmlData = try Data(contentsOf: URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("excessive-spine-items.xml"))
+        let xmlData = try Data(
+            contentsOf: URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("excessive-spine-items.xml")
+        )
 
         measureMetrics([.wallClockTime], automaticallyStartMeasuring: false) {
             startMeasuring()
@@ -109,7 +119,9 @@ final class XMLTests: XCTestCase {
     }
 
     func testDeepDepthNavipointsXMLInit() throws {
-        let xmlData = try Data(contentsOf: URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("deep-depth-navipoints.xml"))
+        let xmlData = try Data(
+            contentsOf: URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("deep-depth-navipoints.xml")
+        )
 
         measureMetrics([.wallClockTime], automaticallyStartMeasuring: false) {
             startMeasuring()
@@ -121,7 +133,9 @@ final class XMLTests: XCTestCase {
     }
 
     func testExcessiveNavpointsXMLInit() throws {
-        let xmlData = try Data(contentsOf: URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("excessive-navpoints.xml"))
+        let xmlData = try Data(
+            contentsOf: URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("excessive-navpoints.xml")
+        )
 
         measureMetrics([.wallClockTime], automaticallyStartMeasuring: false) {
             startMeasuring()
