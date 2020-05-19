@@ -5,8 +5,8 @@ class _XMLParser: Operation {
 
     var result: Result<XMLDocument, Error>?
 
-    private var xmlDocument: XMLDocument?
-    private var xmlDocumentCurrentIndexPath = IndexPath()
+    private lazy var xmlDocument = XMLDocument()
+    private lazy var xmlDocumentCurrentIndexPath = IndexPath()
 
     private var isNodeOpened: Bool = false
 
@@ -18,6 +18,7 @@ class _XMLParser: Operation {
     }
 
     override func main() {
+        result = nil
         xmlParser.parse()
         result = result ?? xmlParser.parserError.flatMap { .failure($0) }
     }
@@ -26,6 +27,7 @@ class _XMLParser: Operation {
 extension _XMLParser: XMLParserDelegate {
     func parserDidStartDocument(_ parser: XMLParser) {
         xmlDocument = XMLDocument()
+        xmlDocumentCurrentIndexPath = IndexPath()
     }
 
     func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
@@ -37,7 +39,7 @@ extension _XMLParser: XMLParserDelegate {
     }
 
     func parserDidEndDocument(_ parser: XMLParser) {
-        result = .success(xmlDocument!)
+        result = .success(xmlDocument)
     }
 
     func parser(
@@ -60,13 +62,13 @@ extension _XMLParser: XMLParserDelegate {
         isNodeOpened = true
 
         guard !xmlDocumentCurrentIndexPath.isEmpty else {
-            xmlDocument!.addChild(newElement)
-            xmlDocumentCurrentIndexPath.append(xmlDocument!.children!.endIndex - 1)
+            xmlDocument.addChild(newElement)
+            xmlDocumentCurrentIndexPath.append(xmlDocument.children!.endIndex - 1)
             return
         }
 
-        xmlDocument![xmlDocumentCurrentIndexPath]!.addChild(newElement)
-        xmlDocumentCurrentIndexPath.append((xmlDocument![xmlDocumentCurrentIndexPath]?.children?.endIndex ?? 1) - 1)
+        xmlDocument[xmlDocumentCurrentIndexPath]!.addChild(newElement)
+        xmlDocumentCurrentIndexPath.append((xmlDocument[xmlDocumentCurrentIndexPath]?.children?.endIndex ?? 1) - 1)
     }
 
     func parser(
@@ -79,7 +81,7 @@ extension _XMLParser: XMLParserDelegate {
 
         var parentElementIndexPath = xmlDocumentCurrentIndexPath
         repeat {
-            guard xmlDocument![xmlDocumentCurrentIndexPath]?.name == elementName else {
+            guard xmlDocument[xmlDocumentCurrentIndexPath]?.name == elementName else {
                 parentElementIndexPath.removeLast()
                 continue
             }
@@ -91,16 +93,16 @@ extension _XMLParser: XMLParserDelegate {
 
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         guard
-            xmlDocument?[xmlDocumentCurrentIndexPath] != nil,
+            xmlDocument[xmlDocumentCurrentIndexPath] != nil,
             isNodeOpened
         else {
             return
         }
 
-        if xmlDocument![xmlDocumentCurrentIndexPath]!.stringValue != nil {
-            xmlDocument![xmlDocumentCurrentIndexPath]!.stringValue!.append(string)
+        if xmlDocument[xmlDocumentCurrentIndexPath]!.stringValue != nil {
+            xmlDocument[xmlDocumentCurrentIndexPath]!.stringValue!.append(string)
         } else {
-            xmlDocument![xmlDocumentCurrentIndexPath]!.stringValue = string
+            xmlDocument[xmlDocumentCurrentIndexPath]!.stringValue = string
         }
     }
 }
