@@ -7,20 +7,8 @@ open class XMLNode {
 
     open internal(set) weak var parent: XMLNode?
 
-    var _children: [XMLNode]?
-    open internal(set) var children: [XMLNode]? {
-        get {
-            return _children
-        }
-        set {
-            let oldValue = _children
-
-            newValue?.forEach { $0.parent = self }
-
-            _children = newValue
-
-            oldValue?.forEach { $0.parent = nil }
-        }
+    open var children: [XMLNode]? {
+        return nil
     }
 
     open internal(set) var name: String?
@@ -45,8 +33,6 @@ open class XMLNode {
 
         self.name = xmlNode.name
         self.stringValue = xmlNode.stringValue
-
-        self.children = xmlNode.children?.map { type(of: $0).init($0) }
     }
 
     // FIXME: Not support predicate yet!
@@ -74,31 +60,19 @@ open class XMLNode {
     }
 
     func insertChild(_ child: XMLNode, at index: Int) {
-        child.parent = self
-
-        _children = _children ?? []
-        _children!.insert(child, at: index)
+        preconditionFailure("Should be overrided!")
     }
 
     func insertChildren(_ children: [XMLNode], at index: Int) {
-        children.forEach { $0.parent = self }
-
-        _children = _children ?? []
-        _children!.insert(contentsOf: children, at: index)
+        preconditionFailure("Should be overrided!")
     }
 
     func removeChild(at index: Int) {
-        _children = children ?? []
-        let child = _children!.remove(at: index)
-
-        child.parent = nil
+        preconditionFailure("Should be overrided!")
     }
 
     func addChild(_ child: XMLNode) {
-        child.parent = self
-
-        _children = _children ?? []
-        _children!.append(child)
+        preconditionFailure("Should be overrided!")
     }
 }
 
