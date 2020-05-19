@@ -1,10 +1,14 @@
-name: Swift
+name: Test
 
 on:
   push:
-    branches: [ master ]
+    paths:
+      - '.github/workflows/test.yml'
+      - '**/*.swift'
   pull_request:
-    branches: [ master ]
+    paths:
+      - '.github/workflows/test.yml'
+      - '**/*.swift'
 
 jobs:
   build:
