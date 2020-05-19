@@ -1,23 +1,23 @@
 import Foundation
 
 class _XMLParser: Operation {
-    var xmlParser: Foundation.XMLParser
+    private var xmlParser: XMLParser
 
-    public var result: Result<XMLDocument, Error>?
+    var result: Result<XMLDocument, Error>?
 
     private var xmlDocument: XMLDocument?
     private var xmlDocumentCurrentIndexPath = IndexPath()
 
     private var isNodeOpened: Bool = false
 
-    public init(data: Data) {
+    init(data: Data) {
         xmlParser = .init(data: data)
         super.init()
 
         xmlParser.delegate = self
     }
 
-    override open func main() {
+    override func main() {
         xmlParser.parse()
     }
 }
@@ -35,7 +35,13 @@ extension _XMLParser: XMLParserDelegate {
         result = .success(xmlDocument!)
     }
 
-    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+    func parser(
+        _ parser: XMLParser,
+        didStartElement elementName: String,
+        namespaceURI: String?,
+        qualifiedName qName: String?,
+        attributes attributeDict: [String : String] = [:]
+    ) {
         let newElement = XMLElement()
         newElement.name = elementName
         newElement.attributes = attributeDict.map {
@@ -58,7 +64,12 @@ extension _XMLParser: XMLParserDelegate {
         xmlDocumentCurrentIndexPath.append((xmlDocument![xmlDocumentCurrentIndexPath]?.children?.endIndex ?? 1) - 1)
     }
 
-    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+    func parser(
+        _ parser: XMLParser,
+        didEndElement elementName: String,
+        namespaceURI: String?,
+        qualifiedName qName: String?
+    ) {
         isNodeOpened = false
 
         var parentElementIndexPath = xmlDocumentCurrentIndexPath
