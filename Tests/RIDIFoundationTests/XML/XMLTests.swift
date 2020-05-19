@@ -63,7 +63,10 @@ final class XMLTests: XCTestCase {
 
             let containerElement = xmlDocument.children?[0] as? RIDIFoundation.XMLElement
             XCTAssertEqual(containerElement?.name, "container")
-            XCTAssertEqual(containerElement?.attributes?["xmlns"].first?.stringValue, "urn:oasis:names:tc:opendocument:xmlns:container")
+            XCTAssertEqual(
+                containerElement?.attributes?["xmlns"].first?.stringValue,
+                "urn:oasis:names:tc:opendocument:xmlns:container"
+            )
             XCTAssertEqual(containerElement?.attributes?["version"].first?.stringValue, "1.0")
             XCTAssertEqual(containerElement?.children?.count, 1)
 
@@ -75,7 +78,10 @@ final class XMLTests: XCTestCase {
             let rootfileElement = rootfilesElement?.children?[0] as? XMLElement
             XCTAssertEqual(rootfileElement?.name, "rootfile")
             XCTAssertEqual(rootfileElement?.attributes?["full-path"].first?.stringValue, "OEBPS/content.opf")
-            XCTAssertEqual(rootfileElement?.attributes?["media-type"].first?.stringValue, "application/oebps-package+xml")
+            XCTAssertEqual(
+                rootfileElement?.attributes?["media-type"].first?.stringValue,
+                "application/oebps-package+xml"
+            )
         }
     }
 
@@ -106,7 +112,9 @@ final class XMLTests: XCTestCase {
 
     func testExcessiveSpineItemsXMLInit() throws {
         let xmlData = try Data(
-            contentsOf: URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("excessive-spine-items.xml")
+            contentsOf: URL(fileURLWithPath: #file)
+                .deletingLastPathComponent()
+                .appendingPathComponent("excessive-spine-items.xml")
         )
 
         measureMetrics([.wallClockTime], automaticallyStartMeasuring: false) {
@@ -120,7 +128,9 @@ final class XMLTests: XCTestCase {
 
     func testDeepDepthNavipointsXMLInit() throws {
         let xmlData = try Data(
-            contentsOf: URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("deep-depth-navipoints.xml")
+            contentsOf: URL(fileURLWithPath: #file)
+                .deletingLastPathComponent()
+                .appendingPathComponent("deep-depth-navipoints.xml")
         )
 
         measureMetrics([.wallClockTime], automaticallyStartMeasuring: false) {
@@ -134,7 +144,9 @@ final class XMLTests: XCTestCase {
 
     func testExcessiveNavpointsXMLInit() throws {
         let xmlData = try Data(
-            contentsOf: URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("excessive-navpoints.xml")
+            contentsOf: URL(fileURLWithPath: #file)
+                .deletingLastPathComponent()
+                .appendingPathComponent("excessive-navpoints.xml")
         )
 
         measureMetrics([.wallClockTime], automaticallyStartMeasuring: false) {

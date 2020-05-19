@@ -25,7 +25,7 @@ open class XMLDocument: XMLNode, XMLDocumentProtocol {
 
     override var _children: [XMLNode]? {
         willSet {
-            precondition(newValue?.filter({ $0 is XMLElement}).count ?? 0 <= 1)
+            precondition(newValue?.filter({ $0 is XMLElement }).count ?? 0 <= 1)
         }
     }
 
