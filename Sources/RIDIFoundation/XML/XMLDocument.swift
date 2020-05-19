@@ -23,19 +23,12 @@ open class XMLDocument: XMLNode, XMLDocumentProtocol {
         }
     }
 
-    private var _children: [XMLNode] = []
     open internal(set) override var children: [XMLNode]? {
         get {
             return _children
         }
         set {
-            let oldValue = _children
-
-            newValue?.forEach { $0.parent = self }
-
-            _children = newValue ?? []
-
-            oldValue.forEach { $0.parent = nil }
+            super.children = newValue
         }
     }
 
@@ -69,30 +62,6 @@ open class XMLDocument: XMLNode, XMLDocumentProtocol {
         }
 
         return try super.nodes(forXPath: xPath)
-    }
-
-    override func insertChild(_ child: XMLNode, at index: Int) {
-        child.parent = self
-
-        _children.insert(child, at: index)
-    }
-
-    override func insertChildren(_ children: [XMLNode], at index: Int) {
-        children.forEach { $0.parent = self }
-
-        _children.insert(contentsOf: children, at: index)
-    }
-
-    override func removeChild(at index: Int) {
-        let child = _children.remove(at: index)
-
-        child.parent = nil
-    }
-
-    override func addChild(_ child: XMLNode) {
-        child.parent = self
-
-        _children.append(child)
     }
 }
 

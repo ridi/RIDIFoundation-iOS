@@ -7,8 +7,20 @@ open class XMLNode {
 
     open internal(set) weak var parent: XMLNode?
 
-    open var children: [XMLNode]? {
-        return nil
+    lazy var _children: [XMLNode] = []
+    open internal(set)  var children: [XMLNode]? {
+        get {
+            return nil
+        }
+        set {
+            let oldValue = _children
+
+            newValue?.forEach { $0.parent = self }
+
+            _children = newValue ?? []
+
+            oldValue.forEach { $0.parent = nil }
+        }
     }
 
     open internal(set) var name: String?
@@ -60,19 +72,27 @@ open class XMLNode {
     }
 
     func insertChild(_ child: XMLNode, at index: Int) {
-        preconditionFailure("Should be overrided!")
+        child.parent = self
+
+        _children.insert(child, at: index)
     }
 
     func insertChildren(_ children: [XMLNode], at index: Int) {
-        preconditionFailure("Should be overrided!")
+        children.forEach { $0.parent = self }
+
+        _children.insert(contentsOf: children, at: index)
     }
 
     func removeChild(at index: Int) {
-        preconditionFailure("Should be overrided!")
+        let child = _children.remove(at: index)
+
+        child.parent = nil
     }
 
     func addChild(_ child: XMLNode) {
-        preconditionFailure("Should be overrided!")
+        child.parent = self
+
+        _children.append(child)
     }
 }
 
