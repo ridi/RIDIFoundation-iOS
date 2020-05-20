@@ -114,10 +114,10 @@ extension XMLNode {
                 return nil
             }
 
-            if !indexPath.isEmpty {
-                return children[index][indexPath]
-            } else {
+            if indexPath.isEmpty {
                 return children[index]
+            } else {
+                return children[index][indexPath]
             }
         }
         set {
