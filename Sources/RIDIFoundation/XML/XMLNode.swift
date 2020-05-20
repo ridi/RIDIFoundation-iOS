@@ -127,9 +127,7 @@ extension XMLNode {
                 fatalError()
             }
 
-            if !indexPath.isEmpty {
-                children![index][indexPath] = newValue
-            } else {
+            if indexPath.isEmpty {
                 if let newValue = newValue {
                     if index == (children?.count ?? 0) {
                         addChild(newValue)
@@ -139,6 +137,8 @@ extension XMLNode {
                 } else {
                     removeChild(at: index)
                 }
+            } else {
+                children![index][indexPath] = newValue
             }
         }
     }
