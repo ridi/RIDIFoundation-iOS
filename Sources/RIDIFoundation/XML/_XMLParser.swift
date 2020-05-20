@@ -93,16 +93,16 @@ extension _XMLParser: XMLParserDelegate {
 
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         guard
-            xmlDocument[xmlDocumentCurrentIndexPath] != nil,
+            let currentElement = xmlDocument[xmlDocumentCurrentIndexPath],
             isNodeOpened
         else {
             return
         }
 
-        if xmlDocument[xmlDocumentCurrentIndexPath]!.stringValue != nil {
-            xmlDocument[xmlDocumentCurrentIndexPath]!.stringValue!.append(string)
+        if currentElement.stringValue != nil {
+            currentElement.stringValue!.append(string)
         } else {
-            xmlDocument[xmlDocumentCurrentIndexPath]!.stringValue = string
+            currentElement.stringValue = string
         }
     }
 }
