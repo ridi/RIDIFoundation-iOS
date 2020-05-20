@@ -124,7 +124,7 @@ extension XMLNode {
             var indexPath = indexPath
 
             guard let index = indexPath.popFirst() else {
-                fatalError()
+                fatalError("Array index out of range")
             }
 
             if indexPath.isEmpty {
