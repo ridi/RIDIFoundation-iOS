@@ -8,7 +8,7 @@ open class XMLNode {
     open internal(set) weak var parent: XMLNode?
 
     lazy var _children: [XMLNode] = []
-    open internal(set)  var children: [XMLNode]? {
+    open internal(set) var children: [XMLNode]? {
         get {
             return nil
         }
