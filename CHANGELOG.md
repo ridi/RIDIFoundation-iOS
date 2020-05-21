@@ -13,7 +13,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-* Add XMLDocument and related classes
+* Add XMLDocument and related classes.
+* Add CodableBinding to UserDefaults extension.
 
 ## [0.1.0]
 
