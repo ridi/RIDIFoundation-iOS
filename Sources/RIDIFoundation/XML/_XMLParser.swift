@@ -58,6 +58,12 @@ extension _XMLParser: XMLParserDelegate {
 
             return attribute
         }
+        newElement._parserContext = .init(
+            publicID: parser.publicID,
+            systemID: parser.systemID,
+            lineNumber: parser.lineNumber,
+            columnNumber: parser.columnNumber
+        )
 
         isNodeOpened = true
 

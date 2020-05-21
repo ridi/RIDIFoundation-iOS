@@ -41,7 +41,11 @@ open class XMLElement: XMLNode {
             "children: \(_children)",
             attributes.flatMap { "attributes: \($0)" },
             "level: \(level)",
-            xPath.flatMap { "xPath: \($0)" }
+            xPath.flatMap { "xPath: \($0)" },
+            (_parserContext?.publicID).flatMap { "publicID: \($0)" },
+            (_parserContext?.systemID).flatMap { "systemID: \($0)" },
+            (_parserContext?.lineNumber).flatMap { "lineNumber: \($0)" },
+            (_parserContext?.columnNumber).flatMap { "columnNumber: \($0)" }
         ].compactMap { $0 }.joined(separator: "; ")
 
         return "<\(descriptions)>"

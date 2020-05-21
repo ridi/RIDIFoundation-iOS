@@ -35,9 +35,11 @@ open class XMLNode: CustomDebugStringConvertible {
         }
     }
 
-    var xPath: String? {
+    open var xPath: String? {
         return nil
     }
+
+    var _parserContext: _XMLParserContext?
 
     var objectDescription: String {
         return "\(String(reflecting: Self.self)): \(Unmanaged<AnyObject>.passUnretained(self as AnyObject).toOpaque())"
@@ -52,7 +54,11 @@ open class XMLNode: CustomDebugStringConvertible {
             (parent?.objectDescription).flatMap { "parent: \($0)" },
             "children: \(_children)",
             "level: \(level)",
-            xPath.flatMap { "xPath: \($0)" }
+            xPath.flatMap { "xPath: \($0)" },
+            (_parserContext?.publicID).flatMap { "publicID: \($0)" },
+            (_parserContext?.systemID).flatMap { "systemID: \($0)" },
+            (_parserContext?.lineNumber).flatMap { "lineNumber: \($0)" },
+            (_parserContext?.columnNumber).flatMap { "columnNumber: \($0)" }
         ].compactMap { $0 }.joined(separator: "; ")
 
         return "<\(descriptions)>"
