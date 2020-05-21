@@ -1,6 +1,6 @@
 import Foundation
 
-open class XMLNode {
+open class XMLNode: CustomDebugStringConvertible {
     open var rootDocument: XMLDocument? {
         return parent?.rootDocument ?? (parent as? XMLDocument)
     }
@@ -37,6 +37,25 @@ open class XMLNode {
 
     var xPath: String? {
         return nil
+    }
+
+    var objectDescription: String {
+        return "\(String(reflecting: Self.self)): \(Unmanaged<AnyObject>.passUnretained(self as AnyObject).toOpaque())"
+    }
+
+    public var debugDescription: String {
+        let descriptions = [
+            objectDescription,
+            name.flatMap { "name: \($0)" },
+            stringValue.flatMap { "value: \($0)" },
+            (rootDocument?.objectDescription).flatMap { "rootDocument: \($0)" },
+            (parent?.objectDescription).flatMap { "parent: \($0)" },
+            "children: \(_children)",
+            "level: \(level)",
+            xPath.flatMap { "xPath: \($0)" }
+        ].compactMap { $0 }.joined(separator: "; ")
+
+        return "<\(descriptions)>"
     }
 
     required public init() {}

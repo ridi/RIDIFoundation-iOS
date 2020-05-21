@@ -31,6 +31,22 @@ open class XMLElement: XMLNode {
         }
     }
 
+    public override var debugDescription: String {
+        let descriptions = [
+            objectDescription,
+            name.flatMap { "name: \($0)" },
+            stringValue.flatMap { "value: \($0)" },
+            (rootDocument?.objectDescription).flatMap { "rootDocument: \($0)" },
+            (parent?.objectDescription).flatMap { "parent: \($0)" },
+            "children: \(_children)",
+            attributes.flatMap { "attributes: \($0)" },
+            "level: \(level)",
+            xPath.flatMap { "xPath: \($0)" }
+        ].compactMap { $0 }.joined(separator: "; ")
+
+        return "<\(descriptions)>"
+    }
+
     override func nodes(forXPath xPath: String) throws -> [XMLNode] {
         guard !xPath.starts(with: "@") else {
             let paths = xPath.split(separator: "/")
@@ -54,3 +70,4 @@ open class XMLElement: XMLNode {
         attributes?.first(where: { $0.name == name })
     }
 }
+
