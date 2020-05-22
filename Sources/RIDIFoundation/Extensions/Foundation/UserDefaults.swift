@@ -178,7 +178,8 @@ extension UserDefaults {
 
         public let kind: KeyValueObservedChange<Value>.Kind
 
-        ///newValue and oldValue will only be non-nil if .new/.old is passed to `observe()`. In general, get the most up to date value by accessing it directly on the observed object instead.
+        ///newValue and oldValue will only be non-nil if .new/.old is passed to `observe()`.
+        ///In general, get the most up to date value by accessing it directly on the observed object instead.
         public let newValue: Value?
 
         public let oldValue: Value?
@@ -186,7 +187,8 @@ extension UserDefaults {
         ///indexes will be nil unless the observed KeyPath refers to an ordered to-many property
         public let indexes: IndexSet?
 
-        ///'isPrior' will be true if this change observation is being sent before the change happens, due to .prior being passed to `observe()`
+        ///'isPrior' will be true if this change observation is being sent before the change happens,
+        ///due to .prior being passed to `observe()`
         public let isPrior: Bool
     }
 
@@ -195,7 +197,11 @@ extension UserDefaults {
         private let key: Key<Value>
         private var changeHandler: (UserDefaults, KeyValueObservedChange<Value>) -> Void
 
-        init(userDefaults: UserDefaults = .standard, key: Key<Value>, options: NSKeyValueObservingOptions, changeHandler: @escaping (UserDefaults, KeyValueObservedChange<Value>) -> Void) {
+        init(
+            userDefaults: UserDefaults = .standard,
+            key: Key<Value>, options: NSKeyValueObservingOptions,
+            changeHandler: @escaping (UserDefaults, KeyValueObservedChange<Value>) -> Void
+        ) {
             self.userDefaults = userDefaults
             self.changeHandler = changeHandler
             self.key = key
@@ -203,7 +209,12 @@ extension UserDefaults {
             userDefaults.addObserver(self, forKeyPath: key.rawValue, options: options, context: nil)
         }
 
-        public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+        public override func observeValue(
+            forKeyPath keyPath: String?,
+            of object: Any?,
+            change: [NSKeyValueChangeKey: Any]?,
+            context: UnsafeMutableRawPointer?
+        ) {
             guard let change = change, object != nil, keyPath == key.rawValue else { return }
             changeHandler(
                 userDefaults,
@@ -222,14 +233,21 @@ extension UserDefaults {
         }
     }
 
-    public func observe<Value>(_ key: Key<Value>, options: NSKeyValueObservingOptions = [.new], changeHandler: @escaping (UserDefaults, KeyValueObservedChange<Value>) -> Void) -> UserDefaults.KeyValueObservation<Value> {
+    public func observe<Value>(
+        _ key: Key<Value>,
+        options: NSKeyValueObservingOptions = [.new],
+        changeHandler: @escaping (UserDefaults, KeyValueObservedChange<Value>) -> Void
+    ) -> UserDefaults.KeyValueObservation<Value> {
         
         KeyValueObservation<Value>(userDefaults: self, key: key, options: options, changeHandler: changeHandler)
     }
 }
 
 extension UserDefaultsBindable {
-    public func observe(options: NSKeyValueObservingOptions = [.new], _ changeHandler: @escaping (Self, UserDefaults.KeyValueObservedChange<ValueType>) -> Void) -> UserDefaults.KeyValueObservation<ValueType> {
+    public func observe(
+        options: NSKeyValueObservingOptions = [.new],
+        _ changeHandler: @escaping (Self, UserDefaults.KeyValueObservedChange<ValueType>) -> Void
+    ) -> UserDefaults.KeyValueObservation<ValueType> {
         userDefaults.observe(self.key, options: options) {
             changeHandler(self, $1)
         }
