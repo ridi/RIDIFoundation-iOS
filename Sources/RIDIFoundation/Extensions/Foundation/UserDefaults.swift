@@ -238,7 +238,6 @@ extension UserDefaults {
         options: NSKeyValueObservingOptions = [.new],
         changeHandler: @escaping (UserDefaults, KeyValueObservedChange<Value>) -> Void
     ) -> UserDefaults.KeyValueObservation<Value> {
-        
         KeyValueObservation<Value>(userDefaults: self, key: key, options: options, changeHandler: changeHandler)
     }
 }
