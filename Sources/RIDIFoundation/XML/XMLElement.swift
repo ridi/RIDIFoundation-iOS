@@ -74,4 +74,3 @@ open class XMLElement: XMLNode {
         attributes?.first(where: { $0.name == name })
     }
 }
-
