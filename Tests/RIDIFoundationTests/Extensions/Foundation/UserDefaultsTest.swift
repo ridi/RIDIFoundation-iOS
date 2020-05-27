@@ -205,6 +205,8 @@ final class UserDefaultsTests: XCTestCase {
         ("testBoolSubscript", testBoolSubscript),
         ("testCodable", testCodable),
         ("testCodableBinding", testCodableBinding),
-        ("testCodableBindingWithTopLevel", testCodableBindingWithTopLevel)
+        ("testCodableBindingWithTopLevel", testCodableBindingWithTopLevel),
+        ("testObservation", testObservation),
+        ("testObservationPrior", testObservationPrior)
     ]
 }
