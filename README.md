@@ -2,6 +2,10 @@
 
 A Swift Foundation additions from RIDI
 
+## Runtime Requirements
+
+- iOS 10.0 or newer
+
 ## Development Requirements
 
 - macOS 10.14.4 or newer
