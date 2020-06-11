@@ -1,6 +1,6 @@
 import Foundation
 
-/// A class that can observation filey system object changes.
+/// A class that can observe file-system object changes.
 open class FileObservation {
     private static let mainQueue = DispatchQueue(
         label: "\(String(reflecting: FileObservation.self)).main",
@@ -38,7 +38,7 @@ open class FileObservation {
 
 extension FileObservation {
     /**
-     Creeate a new FileObservation object for monitoring file-system write events.
+     Create a new FileObservation object for monitoring file-system write events.
 
      The event handler will be invoked from default QOS global queue.
 
@@ -51,7 +51,7 @@ extension FileObservation {
     }
 
     /**
-     Creeate a new FileObservation object for monitoring file-system write events.
+     Create a new FileObservation object for monitoring file-system write events.
 
      The event handler will be invoked from default QOS global queue.
 
