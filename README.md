@@ -2,8 +2,12 @@
 
 A Swift Foundation additions from RIDI
 
-## 요구사항 (develop branch 기준)
+## Runtime Requirements
 
-- macOS Mojave (10.14.4) 이상
-- Xcode 11.3 이상
-- [Swiftlint](https://github.com/realm/SwiftLint) 0.39.1 이상
+- iOS 10.0 or newer
+
+## Development Requirements
+
+- macOS 10.14.4 or newer
+- Xcode 11.3 or newer
+- [Swiftlint](https://github.com/realm/SwiftLint) 0.39.1 or newer

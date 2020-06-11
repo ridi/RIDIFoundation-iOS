@@ -1,0 +1,36 @@
+name: Pages
+
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  deploy-docs:
+  
+    runs-on: macOS-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - uses: actions/cache@v2
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gems-
+    - run: bundle install --jobs=3 --retry=3 --deployment
+
+    - name: Run jazzy
+      run: |
+        bundle exec jazzy \
+          --module RIDIFoundation \
+          --swift-build-tool spm \
+          --author RIDI \
+          --author_url https://www.ridicorp.com \
+          --github_url https://github.com/ridi/RIDIFoundation-iOS
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs
