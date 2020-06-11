@@ -435,34 +435,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/FileObservation/FileObservation.swift",
-      "line": 3,
-      "symbol": "FileObservation",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/FileObservation/FileObservation.swift",
-      "line": 38,
-      "symbol": "FileObservation",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/FileObservation/FileObservation.swift",
-      "line": 39,
-      "symbol": "FileObservation.observe(atPath:handler:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/FileObservation/FileObservation.swift",
-      "line": 43,
-      "symbol": "FileObservation.observe(at:handler:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.class",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLDocument.swift",
       "line": 3,
       "symbol": "XMLDocument",
