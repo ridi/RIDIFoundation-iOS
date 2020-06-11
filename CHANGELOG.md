@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * None.
 
+## [0.3.1 (2020-06-11)]
+
+### Added
+
+* Add documentation to FileObservation
+
 ## [0.3.0 (2020-05-27)]
 
 ### Added
@@ -26,7 +32,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * First release.
 
-[Unreleased]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.3.0...HEAD
+[Unreleased]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.3.1...HEAD
+[0.3.1 (2020-06-11)]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.3.0...0.3.1
 [0.3.0 (2020-05-27)]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.2.0...0.3.0
 [0.2.0 (2020-05-21)]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.1.0...0.2.0
 [0.1.0]: https://github.com/ridi/RIDIFoundation-iOS/releases/tag/0.1.0
