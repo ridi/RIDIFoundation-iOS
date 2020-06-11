@@ -12,7 +12,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - run: bundle install
+    
+    - uses: actions/cache@v2
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gems-
+    - run: bundle install --jobs=3 --retry=3 --deployment
+
     - name: Run jazzy
       run: |
         bundle exec jazzy \
