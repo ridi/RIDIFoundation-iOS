@@ -1,0 +1,684 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 5,
+      "symbol": "UserDefaults.Key",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 8,
+      "symbol": "UserDefaults.Key.init(_:valueType:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 12,
+      "symbol": "UserDefaults.Key.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 23,
+      "symbol": "UserDefaults.subscript(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.subscript",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 32,
+      "symbol": "UserDefaults.subscript(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.subscript",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 41,
+      "symbol": "UserDefaults.subscript(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.subscript",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 50,
+      "symbol": "UserDefaults.subscript(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.subscript",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 59,
+      "symbol": "UserDefaults.subscript(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.subscript",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 68,
+      "symbol": "UserDefaults.subscript(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.subscript",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 77,
+      "symbol": "UserDefaults.subscript(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.subscript",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 86,
+      "symbol": "UserDefaults.subscript(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.subscript",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 95,
+      "symbol": "UserDefaults.subscript(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.subscript",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 104,
+      "symbol": "UserDefaults.subscript(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.subscript",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 113,
+      "symbol": "UserDefaults.subscript(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.subscript",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 126,
+      "symbol": "UserDefaults.object(forKey:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 134,
+      "symbol": "UserDefaults.set(_:forKey:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 143,
+      "symbol": "UserDefaults.removeObject(forKey:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 147,
+      "symbol": "UserDefaults.objectIsForced(forKey:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 151,
+      "symbol": "UserDefaults.objectIsForced(forKey:inDomain:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 156,
+      "symbol": "UserDefaultsBindable",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 157,
+      "symbol": "UserDefaultsBindable.ValueType",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 159,
+      "symbol": "UserDefaultsBindable.userDefaults",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 160,
+      "symbol": "UserDefaultsBindable.key",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 163,
+      "symbol": "UserDefaultsBindable",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 164,
+      "symbol": "UserDefaultsBindable.hasPersistentValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 168,
+      "symbol": "UserDefaultsBindable.removePersistentValue()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 176,
+      "symbol": "UserDefaults.KeyValueObservedChange",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 177,
+      "symbol": "UserDefaults.KeyValueObservedChange.Kind",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 179,
+      "symbol": "UserDefaults.KeyValueObservedChange.kind",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 185,
+      "symbol": "UserDefaults.KeyValueObservedChange.oldValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 195,
+      "symbol": "UserDefaults.KeyValueObservation",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 212,
+      "symbol": "UserDefaults.KeyValueObservation.observeValue(forKeyPath:of:change:context:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 236,
+      "symbol": "UserDefaults.observe(_:options:changeHandler:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 245,
+      "symbol": "UserDefaultsBindable",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 246,
+      "symbol": "UserDefaultsBindable.observe(options:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 260,
+      "symbol": "UserDefaults.Binding",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 261,
+      "symbol": "UserDefaults.Binding.userDefaults",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 262,
+      "symbol": "UserDefaults.Binding.key",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 263,
+      "symbol": "UserDefaults.Binding.defaultValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 265,
+      "symbol": "UserDefaults.Binding.wrappedValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 274,
+      "symbol": "UserDefaults.Binding.projectedValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 278,
+      "symbol": "UserDefaults.Binding.init(userDefaults:key:defaultValue:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 287,
+      "symbol": "UserDefaults.LazyBinding",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 288,
+      "symbol": "UserDefaults.LazyBinding.userDefaults",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 289,
+      "symbol": "UserDefaults.LazyBinding.key",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 290,
+      "symbol": "UserDefaults.LazyBinding.defaultValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 292,
+      "symbol": "UserDefaults.LazyBinding.wrappedValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 301,
+      "symbol": "UserDefaults.LazyBinding.projectedValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 305,
+      "symbol": "UserDefaults.LazyBinding.init(userDefaults:key:defaultValue:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 314,
+      "symbol": "UserDefaults.OptionalBinding",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 315,
+      "symbol": "UserDefaults.OptionalBinding.userDefaults",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 316,
+      "symbol": "UserDefaults.OptionalBinding.key",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 318,
+      "symbol": "UserDefaults.OptionalBinding.wrappedValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 331,
+      "symbol": "UserDefaults.OptionalBinding.projectedValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 335,
+      "symbol": "UserDefaults.OptionalBinding.init(userDefaults:key:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 343,
+      "symbol": "UserDefaults.CodableBinding",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 344,
+      "symbol": "UserDefaults.CodableBinding.userDefaults",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 345,
+      "symbol": "UserDefaults.CodableBinding.key",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 346,
+      "symbol": "UserDefaults.CodableBinding.defaultValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 348,
+      "symbol": "UserDefaults.CodableBinding.wrappedValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 378,
+      "symbol": "UserDefaults.CodableBinding.projectedValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults.swift",
+      "line": 382,
+      "symbol": "UserDefaults.CodableBinding.init(userDefaults:key:defaultValue:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/FileObservation/FileObservation.swift",
+      "line": 3,
+      "symbol": "FileObservation",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/FileObservation/FileObservation.swift",
+      "line": 38,
+      "symbol": "FileObservation",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/FileObservation/FileObservation.swift",
+      "line": 39,
+      "symbol": "FileObservation.observe(atPath:handler:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/FileObservation/FileObservation.swift",
+      "line": 43,
+      "symbol": "FileObservation.observe(at:handler:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLDocument.swift",
+      "line": 3,
+      "symbol": "XMLDocument",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLDocument.swift",
+      "line": 4,
+      "symbol": "XMLDocument.parent",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLDocument.swift",
+      "line": 9,
+      "symbol": "XMLDocument.level",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLDocument.swift",
+      "line": 13,
+      "symbol": "XMLDocument.rootElement",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLDocument.swift",
+      "line": 26,
+      "symbol": "XMLDocument.children",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLDocument.swift",
+      "line": 35,
+      "symbol": "XMLDocument.stringValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLDocument.swift",
+      "line": 68,
+      "symbol": "XMLDocumentProtocol",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLDocument.swift",
+      "line": 70,
+      "symbol": "XMLDocumentProtocol",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLDocument.swift",
+      "line": 71,
+      "symbol": "XMLDocumentProtocol.init(data:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLDocument.swift",
+      "line": 87,
+      "symbol": "XMLDocumentProtocol.init(xmlString:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLElement.swift",
+      "line": 3,
+      "symbol": "XMLElement",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLElement.swift",
+      "line": 4,
+      "symbol": "XMLElement.children",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLElement.swift",
+      "line": 13,
+      "symbol": "XMLElement.attributes",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLElement.swift",
+      "line": 26,
+      "symbol": "XMLElement.xPath",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLElement.swift",
+      "line": 34,
+      "symbol": "XMLElement.debugDescription",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLElement.swift",
+      "line": 73,
+      "symbol": "XMLElement.attribute(forName:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLNode.swift",
+      "line": 3,
+      "symbol": "XMLNode",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLNode.swift",
+      "line": 4,
+      "symbol": "XMLNode.rootDocument",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLNode.swift",
+      "line": 8,
+      "symbol": "XMLNode.parent",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLNode.swift",
+      "line": 11,
+      "symbol": "XMLNode.children",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLNode.swift",
+      "line": 26,
+      "symbol": "XMLNode.name",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLNode.swift",
+      "line": 27,
+      "symbol": "XMLNode.stringValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLNode.swift",
+      "line": 29,
+      "symbol": "XMLNode.level",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLNode.swift",
+      "line": 38,
+      "symbol": "XMLNode.xPath",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLNode.swift",
+      "line": 67,
+      "symbol": "XMLNode.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLNode.swift",
+      "line": 69,
+      "symbol": "XMLNode.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLNode.swift",
+      "line": 180,
+      "symbol": "XMLNode",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLNode.swift",
+      "line": 181,
+      "symbol": "XMLNode.subscript(xPath:)",
+      "symbol_kind": "source.lang.swift.decl.function.subscript",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLNode.swift",
+      "line": 186,
+      "symbol": "XMLNode",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLNode.swift",
+      "line": 187,
+      "symbol": "XMLNode.subscript(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.subscript",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLNode.swift",
+      "line": 193,
+      "symbol": "Array.subscript(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.subscript",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/runner/runners/2.263.0/work/RIDIFoundation-iOS/RIDIFoundation-iOS"
+}
