@@ -2,6 +2,18 @@
 import XCTest
 
 final class UserDefaultsTests: XCTestCase {
+    var userDefaults: UserDefaults{
+        .standard
+    }
+
+    override func tearDown() {
+        super.tearDown()
+
+        userDefaults.dictionaryRepresentation().forEach { key, _ in
+            userDefaults.removeObject(forKey: key)
+        }
+    }
+
     func testBinding() {
         struct Test {
             struct Keys {
