@@ -158,6 +158,8 @@ public protocol UserDefaultsBindable {
 
     var userDefaults: UserDefaults { get }
     var key: UserDefaults.Key<ValueType> { get }
+
+    var wrappedValue: ValueType { get }
 }
 
 extension UserDefaultsBindable {
@@ -257,12 +259,12 @@ extension UserDefaultsBindable {
 
 extension UserDefaults {
     @propertyWrapper
-    public struct Binding<T>: UserDefaultsBindable {
+    open class Binding<T>: UserDefaultsBindable {
         public let userDefaults: UserDefaults
         public let key: Key<T>
         public let defaultValue: T
 
-        public var wrappedValue: T {
+        open var wrappedValue: T {
             get {
                 return userDefaults[key] ?? defaultValue
             }
@@ -271,7 +273,7 @@ extension UserDefaults {
             }
         }
 
-        public var projectedValue: Binding<T> {
+        open var projectedValue: Binding<T> {
             return self
         }
 
@@ -284,12 +286,12 @@ extension UserDefaults {
     }
 
     @propertyWrapper
-    public struct LazyBinding<T>: UserDefaultsBindable {
+    open class LazyBinding<T>: UserDefaultsBindable {
         public let userDefaults: UserDefaults
         public let key: Key<T>
         public let defaultValue: () -> T
 
-        public var wrappedValue: T {
+        open var wrappedValue: T {
             get {
                 return userDefaults[key] ?? defaultValue()
             }
@@ -298,7 +300,7 @@ extension UserDefaults {
             }
         }
 
-        public var projectedValue: LazyBinding<T> {
+        open var projectedValue: LazyBinding<T> {
             return self
         }
 
@@ -311,41 +313,12 @@ extension UserDefaults {
     }
 
     @propertyWrapper
-    public struct OptionalBinding<T>: UserDefaultsBindable {
-        public let userDefaults: UserDefaults
-        public let key: Key<T>
-
-        public var wrappedValue: T? {
-            get {
-                guard hasPersistentValue else {
-                    return nil
-                }
-
-                return userDefaults[key]
-            }
-            set {
-                return userDefaults[key] = newValue
-            }
-        }
-
-        public var projectedValue: OptionalBinding<T> {
-            return self
-        }
-
-        public init(userDefaults: UserDefaults = .standard, key: Key<T>) {
-            checkCodable(T.self)
-            self.userDefaults = userDefaults
-            self.key = key
-        }
-    }
-
-    @propertyWrapper
-    public struct CodableBinding<T: Codable>: UserDefaultsBindable {
+    open class CodableBinding<T: Codable>: UserDefaultsBindable {
         public let userDefaults: UserDefaults
         public let key: Key<T>
         public let defaultValue: T
 
-        public var wrappedValue: T {
+        open var wrappedValue: T {
             get {
                 do {
                     return try userDefaults.object(forKey: key) ?? defaultValue
@@ -375,7 +348,7 @@ extension UserDefaults {
             }
         }
 
-        public var projectedValue: CodableBinding<T> {
+        open var projectedValue: CodableBinding<T> {
             return self
         }
 
@@ -408,3 +381,79 @@ private func checkCodable<T>(_ type: T) {
         "  Use UserDefaults.CodableBinding instead or use UserDefaults.object(forKey:) or UserDefaults.set(_:forKey:).\n"
     )
 }
+
+#if canImport(Combine)
+import Combine
+
+@available(macOS 10.15, iOS 13.0, *)
+extension UserDefaults {
+    struct BindingPublisher<Binding: UserDefaultsBindable>: Publisher {
+        typealias Output = Binding.ValueType
+        typealias Failure = Never
+
+        class BindingSubscription<Binding: UserDefaultsBindable, S: Subscriber>: Subscription where S.Input == Binding.ValueType, S.Failure == Never {
+
+
+            private var observation: UserDefaults.KeyValueObservation<Binding.ValueType>?
+            private var subscriber: S?
+
+            init(binding: Binding, subscriber: S) {
+                self.subscriber = subscriber
+                self.observation = binding.observe(options: [.prior], { [weak self] _, change in
+                    guard let self = self else {
+                        return
+                    }
+
+                    guard change.isPrior else {
+                        return
+                    }
+
+                    _ = self.subscriber?.receive(binding.wrappedValue)
+                })
+            }
+
+            func request(_ demand: Subscribers.Demand) {}
+
+            func cancel() {
+                observation = nil
+                subscriber = nil
+            }
+        }
+
+        let binding: Binding
+
+        func receive<S>(subscriber: S) where S : Subscriber, Failure == S.Failure, Binding.ValueType == S.Input {
+            let subscription = BindingSubscription(binding: binding, subscriber: subscriber)
+            subscriber.receive(subscription: subscription)
+        }
+    }
+}
+
+@available(macOS 10.15, iOS 13.0, *)
+public protocol ObservableUserDefaultsBindable: UserDefaultsBindable, ObservableObject {
+
+}
+
+@available(macOS 10.15, iOS 13.0, *)
+extension ObservableUserDefaultsBindable {
+    public var objectWillChange: AnyPublisher<Void, Never> {
+        publisher
+            .map { _ in () }
+            .eraseToAnyPublisher()
+    }
+
+    public var publisher: AnyPublisher<ValueType, Never> {
+        UserDefaults.BindingPublisher(binding: self).eraseToAnyPublisher()
+    }
+}
+
+@available(macOS 10.15, iOS 13.0, *)
+extension UserDefaults.Binding: ObservableUserDefaultsBindable {}
+
+@available(macOS 10.15, iOS 13.0, *)
+extension UserDefaults.LazyBinding: ObservableUserDefaultsBindable {}
+
+@available(macOS 10.15, iOS 13.0, *)
+extension UserDefaults.CodableBinding: ObservableUserDefaultsBindable {}
+
+#endif
