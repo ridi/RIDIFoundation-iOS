@@ -257,6 +257,16 @@ extension UserDefaultsBindable {
 
 // MARK: -
 
+private protocol OptionalProtocol {
+    func isNil() -> Bool
+}
+
+extension Optional : OptionalProtocol {
+    fileprivate func isNil() -> Bool {
+        return self == nil
+    }
+}
+
 extension UserDefaults {
     @propertyWrapper
     open class Binding<T>: UserDefaultsBindable {
@@ -269,7 +279,11 @@ extension UserDefaults {
                 return userDefaults[key] ?? defaultValue
             }
             set {
-                return userDefaults[key] = newValue
+                if let value = newValue as? OptionalProtocol, value.isNil() {
+                    userDefaults.removeObject(forKey: key)
+                } else {
+                    userDefaults[key] = newValue
+                }
             }
         }
 
@@ -296,7 +310,11 @@ extension UserDefaults {
                 return userDefaults[key] ?? defaultValue()
             }
             set {
-                return userDefaults[key] = newValue
+                if let value = newValue as? OptionalProtocol, value.isNil() {
+                    userDefaults.removeObject(forKey: key)
+                } else {
+                    userDefaults[key] = newValue
+                }
             }
         }
 

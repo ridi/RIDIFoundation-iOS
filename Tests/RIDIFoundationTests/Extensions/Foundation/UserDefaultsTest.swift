@@ -20,6 +20,24 @@ final class UserDefaultsTests: XCTestCase {
         )
     }
 
+    func testBindingNil() {
+        struct Test {
+            struct Keys {
+                static let test = UserDefaults.Key(UUID().uuidString, valueType: String?.self)
+            }
+
+            @UserDefaults.Binding(key: Keys.test, defaultValue: "test")
+            static var value: String?
+        }
+
+        Test.value = nil
+
+        XCTAssertEqual(
+            UserDefaults.standard.string(forKey: Test.Keys.test.rawValue),
+            Test.value
+        )
+    }
+
     func testBindingDefaultValue() {
         struct Test {
             struct Keys {
