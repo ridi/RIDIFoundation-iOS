@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * None.
 
+## [0.4.1 (2020-07-03)]
+
+### Changed
+
+* Fix optional value can not be works with UserDefaults.Binding* classes.
+
 ## [0.4.0 (2020-07-03)]
 
 ### Added
@@ -49,7 +55,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * First release.
 
-[Unreleased]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.4.0...HEAD
+[Unreleased]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.4.1...HEAD
+[0.4.1 (2020-07-03)]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.4.0...0.4.1
 [0.4.0 (2020-07-03)]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.3.2...0.4.0
 [0.3.2 (2020-06-11)]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.3.1...0.3.2
 [0.3.1 (2020-06-11)]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.3.0...0.3.1
