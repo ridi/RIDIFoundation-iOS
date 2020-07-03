@@ -257,6 +257,16 @@ extension UserDefaultsBindable {
 
 // MARK: -
 
+private protocol OptionalProtocol {
+    func isNil() -> Bool
+}
+
+extension Optional : OptionalProtocol {
+    fileprivate func isNil() -> Bool {
+        return self == nil
+    }
+}
+
 extension UserDefaults {
     @propertyWrapper
     open class Binding<T>: UserDefaultsBindable {
@@ -269,7 +279,11 @@ extension UserDefaults {
                 return userDefaults[key] ?? defaultValue
             }
             set {
-                return userDefaults[key] = newValue
+                if let value = newValue as? OptionalProtocol, value.isNil() {
+                    userDefaults.removeObject(forKey: key)
+                } else {
+                    userDefaults[key] = newValue
+                }
             }
         }
 
@@ -296,7 +310,11 @@ extension UserDefaults {
                 return userDefaults[key] ?? defaultValue()
             }
             set {
-                return userDefaults[key] = newValue
+                if let value = newValue as? OptionalProtocol, value.isNil() {
+                    userDefaults.removeObject(forKey: key)
+                } else {
+                    userDefaults[key] = newValue
+                }
             }
         }
 
@@ -371,11 +389,18 @@ private func checkCodable<T>(_ type: T) {
             Date.self,
             String.self,
             URL.self,
-            LosslessStringConvertible.self,
-            [Any].self,
+            Optional<Int>.self,
+            Optional<Float>.self,
+            Optional<Double>.self,
+            Optional<Bool>.self,
+            Optional<Data>.self,
+            Optional<Date>.self,
+            Optional<String>.self,
+            Optional<URL>.self,
             [String].self,
             [String: Any].self,
-            NSObject.self
+            NSObject.self,
+            [NSObject.self]
         ].contains(where: { $0 is T }),
         "⚠️ Codable do not support yet.\n" +
         "  Use UserDefaults.CodableBinding instead or use UserDefaults.object(forKey:) or UserDefaults.set(_:forKey:).\n"
