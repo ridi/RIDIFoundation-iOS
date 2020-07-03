@@ -371,33 +371,18 @@ private func checkCodable<T>(_ type: T) {
             Date.self,
             String.self,
             URL.self,
-            LosslessStringConvertible.self,
-            [Any].self,
+            Optional<Int>.self,
+            Optional<Float>.self,
+            Optional<Double>.self,
+            Optional<Bool>.self,
+            Optional<Data>.self,
+            Optional<Date>.self,
+            Optional<String>.self,
+            Optional<URL>.self,
             [String].self,
             [String: Any].self,
-            NSObject.self
-        ].contains(where: { $0 is T }),
-        "⚠️ Codable do not support yet.\n" +
-        "  Use UserDefaults.CodableBinding instead or use UserDefaults.object(forKey:) or UserDefaults.set(_:forKey:).\n"
-    )
-}
-
-private func checkCodable<T>(_ type: Optional<T>) {
-    assert(
-        [
-            Int.self,
-            Float.self,
-            Double.self,
-            Bool.self,
-            Data.self,
-            Date.self,
-            String.self,
-            URL.self,
-            LosslessStringConvertible.self,
-            [Any].self,
-            [String].self,
-            [String: Any].self,
-            NSObject.self
+            NSObject.self,
+            [NSObject.self]
         ].contains(where: { $0 is T }),
         "⚠️ Codable do not support yet.\n" +
         "  Use UserDefaults.CodableBinding instead or use UserDefaults.object(forKey:) or UserDefaults.set(_:forKey:).\n"
