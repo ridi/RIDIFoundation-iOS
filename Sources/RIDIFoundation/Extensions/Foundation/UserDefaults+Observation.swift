@@ -1,3 +1,4 @@
+// swiftlint:disable function_default_parameter_at_end
 import Foundation
 
 extension UserDefaults {
@@ -48,8 +49,8 @@ extension UserDefaults {
                 userDefaults,
                 KeyValueObservedChange(
                     kind: NSKeyValueChange(rawValue: change[.kindKey] as! UInt)!,
-                    newValue: try? change[.newKey] as? Value ?? UserDefaults._decode(change[.newKey]),
-                    oldValue: try? change[.oldKey] as? Value ?? UserDefaults._decode(change[.oldKey]),
+                    newValue: try? change[.newKey] as? Value ?? UserDefaults.decode(change[.newKey]),
+                    oldValue: try? change[.oldKey] as? Value ?? UserDefaults.decode(change[.oldKey]),
                     indexes: change[.indexesKey] as? IndexSet,
                     isPrior: change[.notificationIsPriorKey] as? Bool == true
                 )
