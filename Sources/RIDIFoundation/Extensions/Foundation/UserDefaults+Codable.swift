@@ -19,12 +19,14 @@ extension UserDefaults {
             return value as? T
         case let value as NSDate:
             return value as? T
-        case let value?:
-            do {
-                let data = try PropertyListSerialization.data(fromPropertyList: value, format: .binary, options: 0)
+        case let value:
+            guard let data = value as? Data else {
+                return nil
+            }
 
-                let decoder = PropertyListDecoder()
-                return try decoder.decode(T.self, from: data)
+            do {
+                let unarchiver = try NSKeyedUnarchiver(forReadingFrom: data)
+                return unarchiver.decodeDecodable(T.self, forKey: NSKeyedArchiveRootObjectKey)
             } catch let originalError {
                 guard let data = value as? Data else {
                     throw originalError
@@ -36,8 +38,6 @@ extension UserDefaults {
                     throw originalError
                 }
             }
-        case .none:
-            return nil
         }
     }
 
@@ -50,10 +50,11 @@ extension UserDefaults {
         case let value as NSDate:
             set(value, forKey: defaultName)
         default:
-            let encoder = PropertyListEncoder()
-            let data = try encoder.encode(value)
+            let archiver = NSKeyedArchiver(requiringSecureCoding: true)
+            try archiver.encodeEncodable(value, forKey: NSKeyedArchiveRootObjectKey)
+            let data = archiver.encodedData
 
-            set(try PropertyListSerialization.propertyList(from: data, options: [], format: nil), forKey: defaultName)
+            set(data, forKey: defaultName)
         }
     }
 }

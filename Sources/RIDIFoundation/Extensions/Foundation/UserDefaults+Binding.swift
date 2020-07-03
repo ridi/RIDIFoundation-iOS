@@ -32,7 +32,7 @@ extension UserDefaults {
                 return (try? userDefaults.ridi_object(forKey: key)) ?? defaultValue
             }
             set {
-                try? userDefaults.ridi_set(newValue, forKey: key)
+                try! userDefaults.ridi_set(newValue, forKey: key)
             }
         }
 
@@ -58,7 +58,7 @@ extension UserDefaults {
                 return (try? userDefaults.ridi_object(forKey: key)) ?? defaultValue()
             }
             set {
-                try? userDefaults.ridi_set(newValue, forKey: key)
+                try! userDefaults.ridi_set(newValue, forKey: key)
             }
         }
 

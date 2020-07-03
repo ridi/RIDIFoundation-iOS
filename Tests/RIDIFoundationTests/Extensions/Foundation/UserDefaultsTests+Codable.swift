@@ -13,12 +13,12 @@ extension UserDefaultsTests {
 
         try userDefaults.ridi_set(value, forKey: key)
 
-        let propertyListEncoder = PropertyListEncoder()
-        let propertyListObject = try PropertyListSerialization.propertyList(from: propertyListEncoder.encode(value), options: [], format: nil)
+        let archiver = NSKeyedArchiver(requiringSecureCoding: true)
+        try archiver.encodeEncodable(value, forKey: NSKeyedArchiveRootObjectKey)
 
         XCTAssertEqual(
-            (UserDefaults.standard.object(forKey: key) as Any?) as! NSObject,
-            propertyListObject as! NSObject
+            (UserDefaults.standard.object(forKey: key) as Any?) as! Data,
+            archiver.encodedData
         )
     }
 
@@ -69,10 +69,10 @@ extension UserDefaultsTests {
         let key = UUID().uuidString
         let value = Test()
 
-        let propertyListEncoder = PropertyListEncoder()
-        let propertyListObject = try PropertyListSerialization.propertyList(from: propertyListEncoder.encode(value), options: [], format: nil)
+        let archiver = NSKeyedArchiver(requiringSecureCoding: true)
+        try archiver.encodeEncodable(value, forKey: NSKeyedArchiveRootObjectKey)
 
-        userDefaults.set(propertyListObject, forKey: key)
+        userDefaults.set(archiver.encodedData, forKey: key)
 
         XCTAssertEqual(
             try userDefaults.ridi_object(forKey: key) as Test?,
