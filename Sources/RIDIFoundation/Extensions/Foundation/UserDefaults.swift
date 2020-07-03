@@ -391,8 +391,8 @@ extension UserDefaults {
         typealias Output = Binding.ValueType
         typealias Failure = Never
 
-        class BindingSubscription<Binding: UserDefaultsBindable, S: Subscriber>: Subscription where S.Input == Binding.ValueType, S.Failure == Never {
-
+        class BindingSubscription<Binding: UserDefaultsBindable, S: Subscriber>: Subscription
+        where S.Input == Binding.ValueType, S.Failure == Never {
 
             private var observation: UserDefaults.KeyValueObservation<Binding.ValueType>?
             private var subscriber: S?
@@ -422,7 +422,7 @@ extension UserDefaults {
 
         let binding: Binding
 
-        func receive<S>(subscriber: S) where S : Subscriber, Failure == S.Failure, Binding.ValueType == S.Input {
+        func receive<S>(subscriber: S) where S: Subscriber, Failure == S.Failure, Binding.ValueType == S.Input {
             let subscription = BindingSubscription(binding: binding, subscriber: subscriber)
             subscriber.receive(subscription: subscription)
         }
