@@ -48,8 +48,8 @@ extension UserDefaults {
                 userDefaults,
                 KeyValueObservedChange(
                     kind: NSKeyValueChange(rawValue: change[.kindKey] as! UInt)!,
-                    newValue: change[.newKey] as? Value,
-                    oldValue: change[.oldKey] as? Value,
+                    newValue: try? change[.newKey] as? Value ?? UserDefaults._decode(change[.newKey]),
+                    oldValue: try? change[.oldKey] as? Value ?? UserDefaults._decode(change[.oldKey]),
                     indexes: change[.indexesKey] as? IndexSet,
                     isPrior: change[.notificationIsPriorKey] as? Bool == true
                 )
