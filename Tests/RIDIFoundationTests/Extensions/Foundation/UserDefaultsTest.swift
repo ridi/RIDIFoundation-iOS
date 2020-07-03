@@ -111,7 +111,7 @@ final class UserDefaultsTests: XCTestCase {
     func testCodableBinding() {
         struct Foo: Codable, Equatable {
             let bar: String
-            
+
             static func == (lhs: Foo, rhs: Foo) -> Bool {
                 return lhs.bar == rhs.bar
             }
@@ -134,7 +134,7 @@ final class UserDefaultsTests: XCTestCase {
             value
         )
     }
-    
+
     func testCodableBindingWithTopLevel() {
         struct Test {
             struct Keys {
@@ -194,6 +194,39 @@ final class UserDefaultsTests: XCTestCase {
         userDefaults[key] = newValue
 
         wait(for: [expectation], timeout: 5.0)
+    }
+
+    @available(macOS 10.15, iOS 13.0, *)
+    func testBindingPublisher() throws {
+        struct Test {
+            struct Keys {
+                static let test = UserDefaults.Key(UUID().uuidString, valueType: String.self)
+            }
+
+            @UserDefaults.Binding(key: Keys.test, defaultValue: "test")
+            static var value: String
+        }
+
+        let expection = XCTestExpectation()
+        let testValue = UUID().uuidString
+
+        let observation = Test.$value
+            .publisher
+            .sink { value in
+                XCTAssertEqual(value, testValue)
+                expection.fulfill()
+            }
+
+        Test.value = testValue
+
+        XCTAssertEqual(
+            UserDefaults.standard.string(forKey: Test.Keys.test.rawValue),
+            Test.value
+        )
+
+        wait(for: [expection], timeout: 10.0)
+
+        observation.cancel()
     }
 
     static var allTests = [

@@ -9,6 +9,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * None.
 
+## [0.4.0 (2020-07-03)]
+
+### Added
+
+* Add publisher property on UserDefaults.Binding* classes.
+* Add ObservedObject protocol on UserDefaults.Binding* classes.
+
+### Removed
+
+* Remove UserDefaults.OptionalBiding.
+
 ## [0.3.2 (2020-06-11)]
 
 ### Changed
@@ -38,7 +49,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * First release.
 
-[Unreleased]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.3.2...HEAD
+[Unreleased]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.4.0...HEAD
+[0.4.0 (2020-07-03)]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.3.2...0.4.0
 [0.3.2 (2020-06-11)]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.3.1...0.3.2
 [0.3.1 (2020-06-11)]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.3.0...0.3.1
 [0.3.0 (2020-05-27)]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.2.0...0.3.0
