@@ -2,7 +2,7 @@
 import XCTest
 
 final class UserDefaultsTests: XCTestCase {
-    var userDefaults: UserDefaults{
+    var userDefaults: UserDefaults {
         .standard
     }
 
