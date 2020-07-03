@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>XMLDocumentProtocol Protocol Reference</title>
+    <title>ObservableUserDefaultsBindable Protocol Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Protocol/XMLDocumentProtocol" class="dashAnchor"></a>
-    <a title="XMLDocumentProtocol Protocol Reference"></a>
+    <a name="//apple_ref/swift/Protocol/ObservableUserDefaultsBindable" class="dashAnchor"></a>
+    <a title="ObservableUserDefaultsBindable Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">RIDIFoundation Docs</a> (14% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">RIDIFoundation Reference</a>
         <img id="carat" src="../img/carat.png" />
-        XMLDocumentProtocol Protocol Reference
+        ObservableUserDefaultsBindable Protocol Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -93,10 +93,10 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>XMLDocumentProtocol</h1>
+            <h1>ObservableUserDefaultsBindable</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">XMLDocumentProtocol</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ObservableUserDefaultsBindable</span> <span class="p">:</span> <span class="kt">ObservableObject</span><span class="p">,</span> <span class="kt"><a href="../Protocols/UserDefaultsBindable.html">UserDefaultsBindable</a></span></code></pre>
 
                 </div>
               </div>
@@ -109,9 +109,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:14RIDIFoundation19XMLDocumentProtocolPAAE4datax10Foundation4DataV_tKcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(data:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:14RIDIFoundation19XMLDocumentProtocolPAAE4datax10Foundation4DataV_tKcfc">init(data:<wbr>)</a>
+                    <a name="/s:7Combine16ObservableObjectP16objectWillChange0ceF9PublisherQzvp"></a>
+                    <a name="//apple_ref/swift/Property/objectWillChange" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Combine16ObservableObjectP16objectWillChange0ceF9PublisherQzvp">objectWillChange</a>
                     </code>
                       <span class="declaration-note">
                         Extension method
@@ -122,14 +122,13 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">objectWillChange</span><span class="p">:</span> <span class="kt">AnyPublisher</span><span class="o">&lt;</span><span class="kt">Void</span><span class="p">,</span> <span class="kt">Never</span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -139,9 +138,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:14RIDIFoundation19XMLDocumentProtocolPAAE9xmlStringxSS_tKcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(xmlString:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:14RIDIFoundation19XMLDocumentProtocolPAAE9xmlStringxSS_tKcfc">init(xmlString:<wbr>)</a>
+                    <a name="/s:14RIDIFoundation30ObservableUserDefaultsBindablePAAE9publisher7Combine12AnyPublisherVy9ValueTypeQzs5NeverOGvp"></a>
+                    <a name="//apple_ref/swift/Property/publisher" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14RIDIFoundation30ObservableUserDefaultsBindablePAAE9publisher7Combine12AnyPublisherVy9ValueTypeQzs5NeverOGvp">publisher</a>
                     </code>
                       <span class="declaration-note">
                         Extension method
@@ -159,7 +158,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">xmlString</span> <span class="nv">string</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">publisher</span><span class="p">:</span> <span class="kt">AnyPublisher</span><span class="o">&lt;</span><span class="kt">ValueType</span><span class="p">,</span> <span class="kt">Never</span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>

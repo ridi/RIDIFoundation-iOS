@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>LazyBinding Structure Reference</title>
+    <title>LazyBinding Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,11 +10,11 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Struct/LazyBinding" class="dashAnchor"></a>
-    <a title="LazyBinding Structure Reference"></a>
+    <a name="//apple_ref/swift/Class/LazyBinding" class="dashAnchor"></a>
+    <a title="LazyBinding Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../../index.html">RIDIFoundation Docs</a> (13% documented)</p>
+        <p><a href="../../index.html">RIDIFoundation Docs</a> (14% documented)</p>
         <p class="header-right"><a href="https://github.com/ridi/RIDIFoundation-iOS"><img src="../../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../../index.html">RIDIFoundation Reference</a>
         <img id="carat" src="../../img/carat.png" />
-        LazyBinding Structure Reference
+        LazyBinding Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -70,9 +70,6 @@
                 <a href="../../Extensions/UserDefaults/LazyBinding.html">– LazyBinding</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Extensions/UserDefaults/OptionalBinding.html">– OptionalBinding</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../../Extensions/UserDefaults/CodableBinding.html">– CodableBinding</a>
               </li>
             </ul>
@@ -80,6 +77,9 @@
           <li class="nav-group-name">
             <a href="../../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Protocols/ObservableUserDefaultsBindable.html">ObservableUserDefaultsBindable</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../../Protocols/UserDefaultsBindable.html">UserDefaultsBindable</a>
               </li>
@@ -97,7 +97,8 @@
               <div class="declaration">
                 <div class="language">
                   <pre class="highlight swift"><code><span class="kd">@propertyWrapper</span>
-<span class="kd">public</span> <span class="kd">struct</span> <span class="kt">LazyBinding</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt"><a href="../../Protocols/UserDefaultsBindable.html">UserDefaultsBindable</a></span></code></pre>
+<span class="kd">open</span> <span class="kd">class</span> <span class="kt">LazyBinding</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt"><a href="../../Protocols/UserDefaultsBindable.html">UserDefaultsBindable</a></span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">UserDefaults</span><span class="o">.</span><span class="kt">LazyBinding</span><span class="p">:</span> <span class="kt"><a href="../../Protocols/ObservableUserDefaultsBindable.html">ObservableUserDefaultsBindable</a></span></code></pre>
 
                 </div>
               </div>
@@ -110,9 +111,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:So14NSUserDefaultsC14RIDIFoundationE11LazyBindingV04userB0ABvp"></a>
+                    <a name="/s:So14NSUserDefaultsC14RIDIFoundationE11LazyBindingC04userB0ABvp"></a>
                     <a name="//apple_ref/swift/Property/userDefaults" class="dashAnchor"></a>
-                    <a class="token" href="#/s:So14NSUserDefaultsC14RIDIFoundationE11LazyBindingV04userB0ABvp">userDefaults</a>
+                    <a class="token" href="#/s:So14NSUserDefaultsC14RIDIFoundationE11LazyBindingC04userB0ABvp">userDefaults</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -137,9 +138,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:So14NSUserDefaultsC14RIDIFoundationE11LazyBindingV3keyAbCE3KeyVy_xGvp"></a>
+                    <a name="/s:So14NSUserDefaultsC14RIDIFoundationE11LazyBindingC3keyAbCE3KeyVy_xGvp"></a>
                     <a name="//apple_ref/swift/Property/key" class="dashAnchor"></a>
-                    <a class="token" href="#/s:So14NSUserDefaultsC14RIDIFoundationE11LazyBindingV3keyAbCE3KeyVy_xGvp">key</a>
+                    <a class="token" href="#/s:So14NSUserDefaultsC14RIDIFoundationE11LazyBindingC3keyAbCE3KeyVy_xGvp">key</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -164,9 +165,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:So14NSUserDefaultsC14RIDIFoundationE11LazyBindingV12defaultValuexycvp"></a>
+                    <a name="/s:So14NSUserDefaultsC14RIDIFoundationE11LazyBindingC12defaultValuexycvp"></a>
                     <a name="//apple_ref/swift/Property/defaultValue" class="dashAnchor"></a>
-                    <a class="token" href="#/s:So14NSUserDefaultsC14RIDIFoundationE11LazyBindingV12defaultValuexycvp">defaultValue</a>
+                    <a class="token" href="#/s:So14NSUserDefaultsC14RIDIFoundationE11LazyBindingC12defaultValuexycvp">defaultValue</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -191,9 +192,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:So14NSUserDefaultsC14RIDIFoundationE11LazyBindingV12wrappedValuexvp"></a>
+                    <a name="/s:So14NSUserDefaultsC14RIDIFoundationE11LazyBindingC12wrappedValuexvp"></a>
                     <a name="//apple_ref/swift/Property/wrappedValue" class="dashAnchor"></a>
-                    <a class="token" href="#/s:So14NSUserDefaultsC14RIDIFoundationE11LazyBindingV12wrappedValuexvp">wrappedValue</a>
+                    <a class="token" href="#/s:So14NSUserDefaultsC14RIDIFoundationE11LazyBindingC12wrappedValuexvp">wrappedValue</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -208,7 +209,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">wrappedValue</span><span class="p">:</span> <span class="kt">T</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">wrappedValue</span><span class="p">:</span> <span class="kt">T</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -218,9 +219,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:So14NSUserDefaultsC14RIDIFoundationE11LazyBindingV14projectedValueAEy_xGvp"></a>
+                    <a name="/s:So14NSUserDefaultsC14RIDIFoundationE11LazyBindingC14projectedValueAEy_xGvp"></a>
                     <a name="//apple_ref/swift/Property/projectedValue" class="dashAnchor"></a>
-                    <a class="token" href="#/s:So14NSUserDefaultsC14RIDIFoundationE11LazyBindingV14projectedValueAEy_xGvp">projectedValue</a>
+                    <a class="token" href="#/s:So14NSUserDefaultsC14RIDIFoundationE11LazyBindingC14projectedValueAEy_xGvp">projectedValue</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -235,7 +236,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">projectedValue</span><span class="p">:</span> <span class="kt">LazyBinding</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">projectedValue</span><span class="p">:</span> <span class="kt">LazyBinding</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -245,9 +246,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:So14NSUserDefaultsC14RIDIFoundationE11LazyBindingV04userB03key12defaultValueAEy_xGAB_AbCE3KeyVy_xGxyXAtcfc"></a>
+                    <a name="/s:So14NSUserDefaultsC14RIDIFoundationE11LazyBindingC04userB03key12defaultValueAEy_xGAB_AbCE3KeyVy_xGxyXAtcfc"></a>
                     <a name="//apple_ref/swift/Method/init(userDefaults:key:defaultValue:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:So14NSUserDefaultsC14RIDIFoundationE11LazyBindingV04userB03key12defaultValueAEy_xGAB_AbCE3KeyVy_xGxyXAtcfc">init(userDefaults:<wbr>key:<wbr>defaultValue:<wbr>)</a>
+                    <a class="token" href="#/s:So14NSUserDefaultsC14RIDIFoundationE11LazyBindingC04userB03key12defaultValueAEy_xGAB_AbCE3KeyVy_xGxyXAtcfc">init(userDefaults:<wbr>key:<wbr>defaultValue:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -262,7 +263,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">userDefaults</span><span class="p">:</span> <span class="kt">UserDefaults</span> <span class="o">=</span> <span class="o">.</span><span class="n">standard</span><span class="p">,</span> <span class="nv">key</span><span class="p">:</span> <span class="kt"><a href="../../Extensions/UserDefaults/Key.html">Key</a></span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">,</span> <span class="n"><a href="../../Extensions/UserDefaults/LazyBinding.html#/s:So14NSUserDefaultsC14RIDIFoundationE11LazyBindingV12defaultValuexycvp">defaultValue</a></span><span class="p">:</span> <span class="kd">@autoclosure</span> <span class="kd">@escaping</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">userDefaults</span><span class="p">:</span> <span class="kt">UserDefaults</span> <span class="o">=</span> <span class="o">.</span><span class="n">standard</span><span class="p">,</span> <span class="nv">key</span><span class="p">:</span> <span class="kt"><a href="../../Extensions/UserDefaults/Key.html">Key</a></span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">,</span> <span class="n"><a href="../../Extensions/UserDefaults/LazyBinding.html#/s:So14NSUserDefaultsC14RIDIFoundationE11LazyBindingC12defaultValuexycvp">defaultValue</a></span><span class="p">:</span> <span class="kd">@autoclosure</span> <span class="kd">@escaping</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -274,7 +275,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="https://www.ridicorp.com" target="_blank" rel="external">RIDI</a>. All rights reserved. (Last updated: 2020-06-11)</p>
+          <p>&copy; 2020 <a class="link" href="https://www.ridicorp.com" target="_blank" rel="external">RIDI</a>. All rights reserved. (Last updated: 2020-07-03)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
