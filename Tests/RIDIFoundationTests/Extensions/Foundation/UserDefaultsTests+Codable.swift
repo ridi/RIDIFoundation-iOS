@@ -13,7 +13,6 @@ extension UserDefaultsTests {
 
         try userDefaults.ridi_set(value, forKey: key)
 
-
         let propertyListEncoder = PropertyListEncoder()
         let propertyListObject = try PropertyListSerialization.propertyList(from: propertyListEncoder.encode(value), options: [], format: nil)
 
@@ -74,6 +73,25 @@ extension UserDefaultsTests {
         let propertyListObject = try PropertyListSerialization.propertyList(from: propertyListEncoder.encode(value), options: [], format: nil)
 
         userDefaults.set(propertyListObject, forKey: key)
+
+        XCTAssertEqual(
+            try userDefaults.ridi_object(forKey: key) as Test?,
+            value
+        )
+    }
+
+    func testGetOldCodable() throws {
+        struct Test: Codable, Equatable {
+            var a = UUID()
+            var b = URL(fileURLWithPath: "/")
+        }
+
+        let key = UUID().uuidString
+        let value = Test()
+
+        let jsonEncoder = JSONEncoder()
+
+        try userDefaults.set(jsonEncoder.encode(UserDefaults._EncodableJSONRoot(root: value)), forKey: key)
 
         XCTAssertEqual(
             try userDefaults.ridi_object(forKey: key) as Test?,

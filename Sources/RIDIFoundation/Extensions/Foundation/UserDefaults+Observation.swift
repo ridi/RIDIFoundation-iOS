@@ -1,7 +1,7 @@
 import Foundation
 
 extension UserDefaults {
-    public struct KeyValueObservedChange<Value> {
+    public struct KeyValueObservedChange<Value: Codable> {
         public typealias Kind = NSKeyValueChange
 
         public let kind: KeyValueObservedChange<Value>.Kind
@@ -20,7 +20,7 @@ extension UserDefaults {
         public let isPrior: Bool
     }
 
-    public class KeyValueObservation<Value>: NSObject {
+    public class KeyValueObservation<Value: Codable>: NSObject {
         private unowned let userDefaults: UserDefaults
         private let key: Key<Value>
         private var changeHandler: (UserDefaults, KeyValueObservedChange<Value>) -> Void

@@ -1,7 +1,7 @@
 import Foundation
 
 extension UserDefaults {
-    public struct Key<Value>: Hashable, Equatable, RawRepresentable {
+    public struct Key<Value: Codable>: Hashable, Equatable, RawRepresentable {
         public var rawValue: String
 
         public init(_ rawValue: String, valueType: Value.Type) {
@@ -118,25 +118,12 @@ extension UserDefaults {
         }
     }
 
-    private struct JSONRoot<T: Codable>: Codable {
-        let root: T
+    open func ridi_object<T>(forKey key: Key<T>) throws -> T? where T: Decodable {
+        try ridi_object(forKey: key.rawValue)
     }
 
-    open func object<T>(forKey key: Key<T>) throws -> T? where T: Codable {
-        let decoder = JSONDecoder()
-
-        return try data(forKey: key.rawValue).flatMap {
-            try decoder.decode(JSONRoot<T>.self, from: $0).root
-        }
-    }
-
-    open func set<T>(_ value: T?, forKey key: Key<T>) throws where T: Codable {
-        let encoder = JSONEncoder()
-
-        set(
-            try value.flatMap { try encoder.encode(JSONRoot<T>(root: $0)) },
-            forKey: key.rawValue
-        )
+    open func ridi_set<T>(_ value: T?, forKey key: Key<T>) throws where T: Encodable {
+        try ridi_set(value, forKey: key.rawValue)
     }
 
     open func removeObject<T>(forKey key: Key<T>) {

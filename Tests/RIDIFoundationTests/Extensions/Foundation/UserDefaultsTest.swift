@@ -66,17 +66,6 @@ final class UserDefaultsTests: XCTestCase {
         )
     }
 
-    func testSubscript() {
-        let key = UserDefaults.Key<Any>(UUID().uuidString)
-
-        UserDefaults.standard[key] = UUID().uuidString as NSString
-
-        XCTAssertEqual(
-            UserDefaults.standard[key] as? NSString,
-            UserDefaults.standard.object(forKey: key.rawValue) as? NSString
-        )
-    }
-
     func testIntSubscript() {
         let key = UserDefaults.Key<Int>(UUID().uuidString)
 
@@ -121,24 +110,7 @@ final class UserDefaultsTests: XCTestCase {
         )
     }
 
-    func testCodable() throws {
-        struct Test: Codable, Equatable {
-            var a = UUID()
-            var b = URL(fileURLWithPath: "/")
-        }
-
-        let key = UserDefaults.Key<Test>(UUID().uuidString)
-        let value = Test()
-
-        try UserDefaults.standard.set(value, forKey: key)
-
-        XCTAssertEqual(
-            try UserDefaults.standard.object(forKey: key),
-            value
-        )
-    }
-
-    func testCodableBinding() {
+    func testBindingCodable() {
         struct Foo: Codable, Equatable {
             let bar: String
 
@@ -152,7 +124,7 @@ final class UserDefaultsTests: XCTestCase {
                 static let test = UserDefaults.Key(UUID().uuidString, valueType: Foo.self)
             }
 
-            @UserDefaults.CodableBinding(key: Keys.test, defaultValue: Foo(bar: "bar"))
+            @UserDefaults.Binding(key: Keys.test, defaultValue: Foo(bar: "bar"))
             static var value: Foo
         }
 
@@ -165,13 +137,13 @@ final class UserDefaultsTests: XCTestCase {
         )
     }
 
-    func testCodableBindingWithTopLevel() {
+    func testBindingCodableWithTopLevel() {
         struct Test {
             struct Keys {
                 static let test = UserDefaults.Key(UUID().uuidString, valueType: Int.self)
             }
 
-            @UserDefaults.CodableBinding(key: Keys.test, defaultValue: 0)
+            @UserDefaults.Binding(key: Keys.test, defaultValue: 0)
             static var value: Int
         }
 
@@ -261,14 +233,12 @@ final class UserDefaultsTests: XCTestCase {
 
     static var allTests = [
         ("testBinding", testBinding),
-        ("testSubscript", testSubscript),
         ("testIntSubscript", testIntSubscript),
         ("testFloatSubscript", testFloatSubscript),
         ("testDoubleSubscript", testDoubleSubscript),
         ("testBoolSubscript", testBoolSubscript),
-        ("testCodable", testCodable),
-        ("testCodableBinding", testCodableBinding),
-        ("testCodableBindingWithTopLevel", testCodableBindingWithTopLevel),
+        ("testBindingCodable", testBindingCodable),
+        ("testBindingCodableWithTopLevel", testBindingCodableWithTopLevel),
         ("testObservation", testObservation),
         ("testObservationPrior", testObservationPrior)
     ]
