@@ -382,6 +382,28 @@ private func checkCodable<T>(_ type: T) {
     )
 }
 
+private func checkCodable<T>(_ type: Optional<T>) {
+    assert(
+        [
+            Int.self,
+            Float.self,
+            Double.self,
+            Bool.self,
+            Data.self,
+            Date.self,
+            String.self,
+            URL.self,
+            LosslessStringConvertible.self,
+            [Any].self,
+            [String].self,
+            [String: Any].self,
+            NSObject.self
+        ].contains(where: { $0 is T }),
+        "⚠️ Codable do not support yet.\n" +
+        "  Use UserDefaults.CodableBinding instead or use UserDefaults.object(forKey:) or UserDefaults.set(_:forKey:).\n"
+    )
+}
+
 #if canImport(Combine)
 import Combine
 
