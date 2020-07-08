@@ -1,5 +1,15 @@
 import Foundation
 
+protocol PropertyListRepresentable {}
+
+extension String: PropertyListRepresentable {}
+extension Int: PropertyListRepresentable {}
+extension Float: PropertyListRepresentable {}
+extension Date: PropertyListRepresentable {}
+
+extension Array: PropertyListRepresentable where Element: PropertyListRepresentable {}
+extension Dictionary: PropertyListRepresentable where Key: PropertyListRepresentable, Value: PropertyListRepresentable {}
+
 extension UserDefaults {
 struct _DecodableJSONRoot<T: Decodable>: Decodable {
         let root: T
@@ -11,11 +21,17 @@ struct _DecodableJSONRoot<T: Decodable>: Decodable {
 
     static func decode<T: Decodable>(_ value: Any?) throws -> T? {
         switch value {
+        case let value as PropertyListRepresentable:
+            return value as? T
         case let value as NSNumber:
             return value as? T
         case let value as NSString:
             return value as? T
         case let value as NSDate:
+            return value as? T
+        case let value as NSArray:
+            return value as? T
+        case let value as NSDictionary:
             return value as? T
         case let value:
             guard let data = value as? Data else {
@@ -41,11 +57,7 @@ struct _DecodableJSONRoot<T: Decodable>: Decodable {
 
     static func encode<T: Encodable>(_ value: T?) throws -> Any? {
         switch value {
-        case let value as NSNumber:
-            return value
-        case let value as NSString:
-            return value
-        case let value as NSDate:
+        case let value as PropertyListRepresentable:
             return value
         default:
             let archiver = NSKeyedArchiver(requiringSecureCoding: true)
