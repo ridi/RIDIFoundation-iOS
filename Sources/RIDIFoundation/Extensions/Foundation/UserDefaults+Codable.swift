@@ -2,10 +2,11 @@ import Foundation
 
 protocol PropertyListRepresentable {}
 
+extension Data: PropertyListRepresentable {}
 extension String: PropertyListRepresentable {}
+extension Date: PropertyListRepresentable {}
 extension Int: PropertyListRepresentable {}
 extension Float: PropertyListRepresentable {}
-extension Date: PropertyListRepresentable {}
 
 extension Array: PropertyListRepresentable where Element: PropertyListRepresentable {}
 extension Dictionary: PropertyListRepresentable where Key: PropertyListRepresentable, Value: PropertyListRepresentable {}
@@ -20,37 +21,25 @@ struct _DecodableJSONRoot<T: Decodable>: Decodable {
     }
 
     static func decode<T: Decodable>(_ value: Any?) throws -> T? {
-        switch value {
-        case let value as PropertyListRepresentable:
+        guard
+            !(T.self is Data.Type),
+            let data = value as? Data
+        else {
             return value as? T
-        case let value as NSNumber:
-            return value as? T
-        case let value as NSString:
-            return value as? T
-        case let value as NSDate:
-            return value as? T
-        case let value as NSArray:
-            return value as? T
-        case let value as NSDictionary:
-            return value as? T
-        case let value:
+        }
+
+        do {
+            let unarchiver = try NSKeyedUnarchiver(forReadingFrom: data)
+            return unarchiver.decodeDecodable(T.self, forKey: NSKeyedArchiveRootObjectKey)
+        } catch let originalError {
             guard let data = value as? Data else {
-                return nil
+                throw originalError
             }
 
             do {
-                let unarchiver = try NSKeyedUnarchiver(forReadingFrom: data)
-                return unarchiver.decodeDecodable(T.self, forKey: NSKeyedArchiveRootObjectKey)
-            } catch let originalError {
-                guard let data = value as? Data else {
-                    throw originalError
-                }
-
-                do {
-                    return try JSONDecoder().decode(_DecodableJSONRoot<T>.self, from: data).root
-                } catch {
-                    throw originalError
-                }
+                return try JSONDecoder().decode(_DecodableJSONRoot<T>.self, from: data).root
+            } catch {
+                throw originalError
             }
         }
     }
