@@ -44,7 +44,7 @@ extension UserDefaults {
 import Combine
 
 @available(macOS 10.15, iOS 13.0, *)
-extension UserDefaults {
+extension UserDefaults.Binding {
     struct BindingPublisher<Output, Binding: UserDefaults.Binding<Output>>: Publisher {
         typealias Failure = Never
 
@@ -84,6 +84,10 @@ extension UserDefaults {
             subscriber.receive(subscription: subscription)
         }
     }
+
+    public var publisher: AnyPublisher<Value, Never> {
+        BindingPublisher(binding: self).eraseToAnyPublisher()
+    }
 }
 
 @available(macOS 10.15, iOS 13.0, *)
@@ -93,10 +97,13 @@ extension UserDefaults.Binding: ObservableObject {
             .map { _ in () }
             .eraseToAnyPublisher()
     }
-
-    public var publisher: AnyPublisher<Value, Never> {
-        UserDefaults.BindingPublisher(binding: self).eraseToAnyPublisher()
-    }
 }
+
+#if canImport(SwiftUI)
+import SwiftUI
+
+@available(macOS 10.15, iOS 13.0, *)
+extension UserDefaults.Binding: DynamicProperty { }
+#endif
 
 #endif
