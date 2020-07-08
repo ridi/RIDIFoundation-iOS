@@ -71,11 +71,11 @@ extension UserDefaults {
     }
 }
 
-extension UserDefaultsBindable {
+extension UserDefaults.Binding {
     public func observe(
         options: NSKeyValueObservingOptions = [.new],
-        _ changeHandler: @escaping (Self, UserDefaults.KeyValueObservedChange<ValueType>) -> Void
-    ) -> UserDefaults.KeyValueObservation<ValueType> {
+        _ changeHandler: @escaping (UserDefaults.Binding<Value>, UserDefaults.KeyValueObservedChange<Value>) -> Void
+    ) -> UserDefaults.KeyValueObservation<Value> {
         userDefaults.observe(self.key, options: options) {
             changeHandler(self, $1)
         }
