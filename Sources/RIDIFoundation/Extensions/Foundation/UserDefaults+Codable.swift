@@ -63,4 +63,12 @@ extension UserDefaults {
     open func ridi_set<T>(_ value: T?, forKey defaultName: String) throws where T: Encodable {
         return try set(Self.encode(value), forKey: defaultName)
     }
+
+    open func ridi_object<T>(forKey key: Key<T>) throws -> T where T: Decodable {
+        try ridi_object(forKey: key.rawValue) ?? key.defaultValue
+    }
+
+    open func ridi_set<T>(_ value: T?, forKey key: Key<T>) throws where T: Encodable {
+        try ridi_set(value, forKey: key.rawValue)
+    }
 }

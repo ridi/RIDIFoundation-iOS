@@ -17,10 +17,10 @@ final class UserDefaultsTests: XCTestCase {
     func testBinding() {
         struct Test {
             struct Keys {
-                static let test = UserDefaults.Key(UUID().uuidString, valueType: String.self)
+                static let test = UserDefaults.Key(UUID().uuidString, defaultValue: "test")
             }
 
-            @UserDefaults.Binding(key: Keys.test, defaultValue: "test")
+            @UserDefaults.Binding(key: Keys.test)
             static var value: String
         }
 
@@ -35,10 +35,10 @@ final class UserDefaultsTests: XCTestCase {
     func testBindingNil() {
         struct Test {
             struct Keys {
-                static let test = UserDefaults.Key(UUID().uuidString, valueType: String?.self)
+                static let test: UserDefaults.Key<String?> = .init(UUID().uuidString)
             }
 
-            @UserDefaults.Binding(key: Keys.test, defaultValue: "test")
+            @UserDefaults.Binding(key: Keys.test)
             static var value: String?
         }
 
@@ -53,21 +53,21 @@ final class UserDefaultsTests: XCTestCase {
     func testBindingDefaultValue() {
         struct Test {
             struct Keys {
-                static let test = UserDefaults.Key(UUID().uuidString, valueType: String.self)
+                static let test = UserDefaults.Key(UUID().uuidString, defaultValue: UUID().uuidString)
             }
 
-            @UserDefaults.Binding(key: Keys.test, defaultValue: UUID().uuidString)
+            @UserDefaults.Binding(key: Keys.test)
             static var value: String
         }
 
         XCTAssertEqual(
             Test.value,
-            Test.$value.defaultValue
+            Test.$value.key.defaultValue
         )
     }
 
     func testIntSubscript() {
-        let key = UserDefaults.Key<Int>(UUID().uuidString)
+        let key = UserDefaults.Key<Int?>(UUID().uuidString)
 
         UserDefaults.standard[key] = .random(in: Int.min...Int.max)
 
@@ -78,7 +78,7 @@ final class UserDefaultsTests: XCTestCase {
     }
 
     func testFloatSubscript() {
-        let key = UserDefaults.Key<Float>(UUID().uuidString)
+        let key = UserDefaults.Key<Float?>(UUID().uuidString)
 
         UserDefaults.standard[key] = .random(in: Float.leastNormalMagnitude...Float.greatestFiniteMagnitude)
 
@@ -89,7 +89,7 @@ final class UserDefaultsTests: XCTestCase {
     }
 
     func testDoubleSubscript() {
-        let key = UserDefaults.Key<Double>(UUID().uuidString)
+        let key = UserDefaults.Key<Double?>(UUID().uuidString)
 
         UserDefaults.standard[key] = .random(in: Double.leastNormalMagnitude...Double.greatestFiniteMagnitude)
 
@@ -100,7 +100,7 @@ final class UserDefaultsTests: XCTestCase {
     }
 
     func testBoolSubscript() {
-        let key = UserDefaults.Key<Bool>(UUID().uuidString)
+        let key = UserDefaults.Key<Bool?>(UUID().uuidString)
 
         UserDefaults.standard[key] = .random()
 
@@ -121,10 +121,10 @@ final class UserDefaultsTests: XCTestCase {
 
         struct Test {
             struct Keys {
-                static let test = UserDefaults.Key(UUID().uuidString, valueType: Foo.self)
+                static let test = UserDefaults.Key(UUID().uuidString, defaultValue: Foo(bar: "bar"))
             }
 
-            @UserDefaults.Binding(key: Keys.test, defaultValue: Foo(bar: "bar"))
+            @UserDefaults.Binding(key: Keys.test)
             static var value: Foo
         }
 
@@ -140,10 +140,10 @@ final class UserDefaultsTests: XCTestCase {
     func testBindingCodableWithTopLevel() {
         struct Test {
             struct Keys {
-                static let test = UserDefaults.Key(UUID().uuidString, valueType: Int.self)
+                static let test = UserDefaults.Key(UUID().uuidString, defaultValue: 0)
             }
 
-            @UserDefaults.Binding(key: Keys.test, defaultValue: 0)
+            @UserDefaults.Binding(key: Keys.test)
             static var value: Int
         }
 
@@ -160,10 +160,10 @@ final class UserDefaultsTests: XCTestCase {
     func testBindingPublisher() throws {
         struct Test {
             struct Keys {
-                static let test = UserDefaults.Key(UUID().uuidString, valueType: String.self)
+                static let test = UserDefaults.Key(UUID().uuidString, defaultValue: "test")
             }
 
-            @UserDefaults.Binding(key: Keys.test, defaultValue: "test")
+            @UserDefaults.Binding(key: Keys.test)
             static var value: String
         }
 

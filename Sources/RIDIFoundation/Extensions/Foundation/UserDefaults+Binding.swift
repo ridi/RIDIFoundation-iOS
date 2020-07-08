@@ -16,60 +16,37 @@ extension UserDefaultsBindable {
     }
 
     public func removePersistentValue() {
-        userDefaults.removeObject(forKey: key)
+        userDefaults.ridi_removeObject(forKey: key)
     }
 }
 
 extension UserDefaults {
     @propertyWrapper
-    open class Binding<T: Codable>: UserDefaultsBindable {
+    open class Binding<Value: Codable>: UserDefaultsBindable {
         public let userDefaults: UserDefaults
-        public let key: Key<T>
-        public let defaultValue: T
+        public let key: Key<Value>
 
-        open var wrappedValue: T {
+        open var wrappedValue: Value {
             get {
-                return (try? userDefaults.ridi_object(forKey: key)) ?? defaultValue
+                return try! userDefaults.ridi_object(forKey: key)
             }
             set {
                 try! userDefaults.ridi_set(newValue, forKey: key)
             }
         }
 
-        open var projectedValue: Binding<T> {
+        open var projectedValue: Binding<Value> {
             return self
         }
 
-        public init(userDefaults: UserDefaults = .standard, key: Key<T>, defaultValue: T) {
+        public init(wrappedValue: Value, key: String, userDefaults: UserDefaults = .standard) {
+            self.userDefaults = userDefaults
+            self.key = .init(key, defaultValue: wrappedValue)
+        }
+
+        public init(key: Key<Value>, userDefaults: UserDefaults = .standard) {
             self.userDefaults = userDefaults
             self.key = key
-            self.defaultValue = defaultValue
-        }
-    }
-
-    @propertyWrapper
-    open class LazyBinding<T: Codable>: UserDefaultsBindable {
-        public let userDefaults: UserDefaults
-        public let key: Key<T>
-        public let defaultValue: () -> T
-
-        open var wrappedValue: T {
-            get {
-                return (try? userDefaults.ridi_object(forKey: key)) ?? defaultValue()
-            }
-            set {
-                try! userDefaults.ridi_set(newValue, forKey: key)
-            }
-        }
-
-        open var projectedValue: LazyBinding<T> {
-            return self
-        }
-
-        public init(userDefaults: UserDefaults = .standard, key: Key<T>, defaultValue: @autoclosure @escaping () -> T) {
-            self.userDefaults = userDefaults
-            self.key = key
-            self.defaultValue = defaultValue
         }
     }
 }
@@ -141,8 +118,5 @@ extension ObservableUserDefaultsBindable {
 
 @available(macOS 10.15, iOS 13.0, *)
 extension UserDefaults.Binding: ObservableUserDefaultsBindable {}
-
-@available(macOS 10.15, iOS 13.0, *)
-extension UserDefaults.LazyBinding: ObservableUserDefaultsBindable {}
 
 #endif
