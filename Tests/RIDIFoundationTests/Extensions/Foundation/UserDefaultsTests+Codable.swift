@@ -49,7 +49,9 @@ extension UserDefaultsTests {
     func testSetDateAsCodable() throws {
         let key = UUID().uuidString
         let value = Date(
-            timeIntervalSince1970: .random(in: TimeInterval.leastNormalMagnitude...TimeInterval.greatestFiniteMagnitude)
+            timeIntervalSince1970: .random(
+                in: TimeInterval.leastNormalMagnitude...TimeInterval.greatestFiniteMagnitude
+            )
         )
 
         try userDefaults.ridi_set(value, forKey: key)
@@ -205,7 +207,9 @@ extension UserDefaultsTests {
         let key = UUID().uuidString
         let value = (0..<50).map { _ in
             Date(
-                timeIntervalSince1970: .random(in: TimeInterval.leastNormalMagnitude...TimeInterval.greatestFiniteMagnitude)
+                timeIntervalSince1970: .random(
+                    in: TimeInterval.leastNormalMagnitude...TimeInterval.greatestFiniteMagnitude
+                )
             )
         }
 

@@ -9,7 +9,8 @@ extension Int: PropertyListRepresentable {}
 extension Float: PropertyListRepresentable {}
 
 extension Array: PropertyListRepresentable where Element: PropertyListRepresentable {}
-extension Dictionary: PropertyListRepresentable where Key: PropertyListRepresentable, Value: PropertyListRepresentable {}
+extension Dictionary: PropertyListRepresentable
+where Key: PropertyListRepresentable, Value: PropertyListRepresentable {}
 
 extension UserDefaults {
 struct _DecodableJSONRoot<T: Decodable>: Decodable {
