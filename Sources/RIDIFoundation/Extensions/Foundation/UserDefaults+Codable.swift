@@ -33,10 +33,6 @@ extension UserDefaults {
             let unarchiver = try NSKeyedUnarchiver(forReadingFrom: data)
             return unarchiver.decodeDecodable(T.self, forKey: NSKeyedArchiveRootObjectKey)
         } catch let originalError {
-            guard let data = value as? Data else {
-                throw originalError
-            }
-
             do {
                 return try JSONDecoder().decode(_DecodableJSONRoot<T>.self, from: data).root
             } catch {
