@@ -3,7 +3,11 @@ import XCTest
 
 extension UserDefaultsTests {
     func testObservation() {
+        #if swift(>=5.3)
         let key = UserDefaults.Key<String?>(UUID().uuidString)
+        #else
+        let key = UserDefaults.Key<String?>(UUID().uuidString, defaultValue: nil)
+        #endif
         let userDefaults = UserDefaults.standard
 
         let newValue = UUID().uuidString
@@ -24,7 +28,11 @@ extension UserDefaultsTests {
     }
 
     func testObservationPrior() {
+        #if swift(>=5.3)
         let key = UserDefaults.Key<String?>(UUID().uuidString)
+        #else
+        let key = UserDefaults.Key<String?>(UUID().uuidString, defaultValue: nil)
+        #endif
         let userDefaults = UserDefaults.standard
 
         let newValue = UUID().uuidString
@@ -45,7 +53,11 @@ extension UserDefaultsTests {
     }
 
     func testObservationCodable() throws {
+        #if swift(>=5.3)
         let key = UserDefaults.Key<UUID?>(UUID().uuidString)
+        #else
+        let key = UserDefaults.Key<UUID?>(UUID().uuidString, defaultValue: nil)
+        #endif
         let userDefaults = UserDefaults.standard
 
         let newValue = UUID()

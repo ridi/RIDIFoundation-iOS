@@ -35,7 +35,11 @@ final class UserDefaultsTests: XCTestCase {
     func testBindingNil() {
         struct Test {
             struct Keys {
+                #if swift(>=5.3)
                 static let test: UserDefaults.Key<String?> = .init(UUID().uuidString)
+                #else
+                static let test: UserDefaults.Key<String?> = .init(UUID().uuidString, defaultValue: nil)
+                #endif
             }
 
             @UserDefaults.Binding(key: Keys.test)
@@ -67,7 +71,11 @@ final class UserDefaultsTests: XCTestCase {
     }
 
     func testIntSubscript() {
+        #if swift(>=5.3)
         let key = UserDefaults.Key<Int?>(UUID().uuidString)
+        #else
+        let key = UserDefaults.Key<Int?>(UUID().uuidString, defaultValue: nil)
+        #endif
 
         UserDefaults.standard[key] = .random(in: Int.min...Int.max)
 
@@ -78,7 +86,11 @@ final class UserDefaultsTests: XCTestCase {
     }
 
     func testFloatSubscript() {
+        #if swift(>=5.3)
         let key = UserDefaults.Key<Float?>(UUID().uuidString)
+        #else
+        let key = UserDefaults.Key<Float?>(UUID().uuidString, defaultValue: nil)
+        #endif
 
         UserDefaults.standard[key] = .random(in: Float.leastNormalMagnitude...Float.greatestFiniteMagnitude)
 
@@ -89,7 +101,11 @@ final class UserDefaultsTests: XCTestCase {
     }
 
     func testDoubleSubscript() {
+        #if swift(>=5.3)
         let key = UserDefaults.Key<Double?>(UUID().uuidString)
+        #else
+        let key = UserDefaults.Key<Double?>(UUID().uuidString, defaultValue: nil)
+        #endif
 
         UserDefaults.standard[key] = .random(in: Double.leastNormalMagnitude...Double.greatestFiniteMagnitude)
 
@@ -100,7 +116,11 @@ final class UserDefaultsTests: XCTestCase {
     }
 
     func testBoolSubscript() {
+        #if swift(>=5.3)
         let key = UserDefaults.Key<Bool?>(UUID().uuidString)
+        #else
+        let key = UserDefaults.Key<Bool?>(UUID().uuidString, defaultValue: nil)
+        #endif
 
         UserDefaults.standard[key] = .random()
 
