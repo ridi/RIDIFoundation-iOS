@@ -10,10 +10,17 @@ extension UserDefaults {
             self.defaultValue = defaultValue
         }
 
+        #if swift(>=5.3)
         public init(_ rawValue: String, defaultValue: Value = nil) where Value: ExpressibleByNilLiteral {
             self.rawValue = rawValue
             self.defaultValue = defaultValue
         }
+
+        public init?(rawValue: String) where Value: ExpressibleByNilLiteral {
+            self.rawValue = rawValue
+            self.defaultValue = nil
+        }
+        #endif
 
         public init?(rawValue: String) {
             return nil
