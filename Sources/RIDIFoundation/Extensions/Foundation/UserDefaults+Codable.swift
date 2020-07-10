@@ -8,6 +8,7 @@ extension Date: PropertyListRepresentable {}
 extension Int: PropertyListRepresentable {}
 extension Float: PropertyListRepresentable {}
 extension Double: PropertyListRepresentable {}
+extension Bool: PropertyListRepresentable {}
 
 extension Array: PropertyListRepresentable where Element: PropertyListRepresentable {}
 extension Dictionary: PropertyListRepresentable
