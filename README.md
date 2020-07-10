@@ -4,10 +4,23 @@ A Swift Foundation additions from RIDI
 
 ## Runtime Requirements
 
-- iOS 10.0 or newer
+- iOS 11.0 or newer
 
 ## Development Requirements
 
-- macOS 10.14.4 or newer
 - Xcode 11.3 or newer
 - [Swiftlint](https://github.com/realm/SwiftLint) 0.39.1 or newer
+
+## Installation
+
+### Swift Package Manager
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/ridi/RIDIFoundation-iOS.git", .upToNextMajor(from: "0.4.1"))
+]
+```
+
+## Documentation
+
+https://ridi.github.io/RIDIFoundation-iOS/
