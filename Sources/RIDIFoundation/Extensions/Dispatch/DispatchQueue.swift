@@ -2,7 +2,7 @@ import Foundation
 import Dispatch
 
 extension DispatchQueue {
-    var isCurrent: Bool {
+    open var isCurrent: Bool {
         let isCurrentQueueKey = DispatchSpecificKey<Bool>()
 
         self.setSpecific(key: isCurrentQueueKey, value: true)
@@ -13,7 +13,7 @@ extension DispatchQueue {
         return DispatchQueue.getSpecific(key: isCurrentQueueKey) == true
     }
 
-    func safeSync<T>(_ block: () throws -> T) rethrows -> T {
+    open func safeSync<T>(_ block: () throws -> T) rethrows -> T {
         guard isCurrent else {
             return try sync { try block() }
         }
