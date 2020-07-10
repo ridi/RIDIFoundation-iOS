@@ -13,7 +13,7 @@ extension Dictionary: PropertyListRepresentable
 where Key: PropertyListRepresentable, Value: PropertyListRepresentable {}
 
 extension UserDefaults {
-struct _DecodableJSONRoot<T: Decodable>: Decodable {
+    struct _DecodableJSONRoot<T: Decodable>: Decodable {
         let root: T
     }
 
