@@ -26,7 +26,7 @@ open class Atomic<Value> {
 
     /// The underlying value referenced by the atomic.
     open var wrappedValue: Value {
-        get { _queue.safeSync { _value } }
+        get { _queue.performAndWait { _value } }
         set { _queue.async(flags: [.barrier]) { self._value = newValue } }
     }
 }

@@ -13,7 +13,7 @@ extension DispatchQueue {
         return DispatchQueue.getSpecific(key: isCurrentQueueKey) == true
     }
 
-    open func safeSync<T>(_ block: () throws -> T) rethrows -> T {
+    open func performAndWait<T>(_ block: () throws -> T) rethrows -> T {
         guard isCurrent else {
             return try sync { try block() }
         }
