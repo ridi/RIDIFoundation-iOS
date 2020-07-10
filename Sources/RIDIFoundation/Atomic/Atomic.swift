@@ -2,7 +2,7 @@ import Foundation
 
 /// A property wrapper type that can guarantee that it can be safely read and written from different threads/queues.
 @propertyWrapper
-public struct Atomic<Value> {
+open class Atomic<Value> {
     private var _value: Value
     private let _queue: DispatchQueue
 
@@ -25,8 +25,8 @@ public struct Atomic<Value> {
     }
 
     /// The underlying value referenced by the atomic.
-    public var wrappedValue: Value {
-        get { _queue.sync { _value } }
-        set { _queue.sync(flags: [.barrier]) { _value = newValue } }
+    open var wrappedValue: Value {
+        get { _queue.safeSync { _value } }
+        set { _queue.async(flags: [.barrier]) { self._value = newValue } }
     }
 }
