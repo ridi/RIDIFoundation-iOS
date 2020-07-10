@@ -188,16 +188,4 @@ final class UserDefaultsTests: XCTestCase {
 
         observation.cancel()
     }
-
-    static var allTests = [
-        ("testBinding", testBinding),
-        ("testIntSubscript", testIntSubscript),
-        ("testFloatSubscript", testFloatSubscript),
-        ("testDoubleSubscript", testDoubleSubscript),
-        ("testBoolSubscript", testBoolSubscript),
-        ("testBindingCodable", testBindingCodable),
-        ("testBindingCodableWithTopLevel", testBindingCodableWithTopLevel),
-        ("testObservation", testObservation),
-        ("testObservationPrior", testObservationPrior)
-    ]
 }
