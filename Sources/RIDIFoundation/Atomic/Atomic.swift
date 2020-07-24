@@ -27,7 +27,7 @@ open class Atomic<Value> {
     /// The underlying value referenced by the atomic.
     open var wrappedValue: Value {
         get { _queue.performAndWait { _value } }
-        set { _queue.async(flags: [.barrier]) { self._value = newValue } }
+        set { perform { $0 = newValue } }
     }
 
     open var projectedValue: Atomic<Value> {
