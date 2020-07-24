@@ -30,10 +30,15 @@ open class Atomic<Value> {
         set { perform { $0 = newValue } }
     }
 
+    /// A projection of the atomic value that returns a atomic.
     open var projectedValue: Atomic<Value> {
         self
     }
 
+    /// Asynchronously performs a given block atomically.
+    ///
+    /// - Parameters:
+    ///     - block: The block to perform.
     open func perform(_ block: @escaping (inout Value) -> Void) {
         _queue.async(flags: [.barrier]) { [self] in block(&self._value) }
     }
