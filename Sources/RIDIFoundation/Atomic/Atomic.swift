@@ -29,4 +29,12 @@ open class Atomic<Value> {
         get { _queue.performAndWait { _value } }
         set { _queue.async(flags: [.barrier]) { self._value = newValue } }
     }
+
+    open var projectedValue: Atomic<Value> {
+        self
+    }
+
+    open func perform(_ block: @escaping (inout Value) -> Void) {
+        _queue.async(flags: [.barrier]) { [self] in block(&self._value) }
+    }
 }
