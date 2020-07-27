@@ -22,9 +22,9 @@ extension UserDefaults {
     }
 
     public class KeyValueObservation<Value: Codable>: NSObject {
-        private unowned let userDefaults: UserDefaults
-        private let key: Key<Value>
-        private var changeHandler: (UserDefaults, KeyValueObservedChange<Value>) -> Void
+        @nonobjc private unowned let userDefaults: UserDefaults
+        @nonobjc private let key: Key<Value>
+        @nonobjc private var changeHandler: ((UserDefaults, KeyValueObservedChange<Value>) -> Void)?
 
         init(
             userDefaults: UserDefaults = .standard,
@@ -38,6 +38,10 @@ extension UserDefaults {
             userDefaults.addObserver(self, forKeyPath: key.rawValue, options: options, context: nil)
         }
 
+        deinit {
+            invalidate()
+        }
+
         public override func observeValue(
             forKeyPath keyPath: String?,
             of object: Any?,
@@ -45,7 +49,7 @@ extension UserDefaults {
             context: UnsafeMutableRawPointer?
         ) {
             guard let change = change, object != nil, keyPath == key.rawValue else { return }
-            changeHandler(
+            changeHandler?(
                 userDefaults,
                 KeyValueObservedChange(
                     kind: NSKeyValueChange(rawValue: change[.kindKey] as! UInt)!,
@@ -57,8 +61,13 @@ extension UserDefaults {
             )
         }
 
-        deinit {
+        public func invalidate() {
+            guard changeHandler != nil else {
+                return
+            }
+
             userDefaults.removeObserver(self, forKeyPath: key.rawValue, context: nil)
+            changeHandler = nil
         }
     }
 
