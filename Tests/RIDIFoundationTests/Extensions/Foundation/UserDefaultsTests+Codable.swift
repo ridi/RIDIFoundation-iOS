@@ -90,7 +90,9 @@ extension UserDefaultsTests {
         let key = UUID().uuidString
         let value = (0..<50).map { _ in
             Date(
-                timeIntervalSince1970: .random(in: TimeInterval.leastNormalMagnitude...TimeInterval.greatestFiniteMagnitude)
+                timeIntervalSince1970: .random(
+                    in: TimeInterval.leastNormalMagnitude...TimeInterval.greatestFiniteMagnitude
+                )
             )
         }
 
