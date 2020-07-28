@@ -130,6 +130,21 @@ final class UserDefaultsTests: XCTestCase {
         )
     }
 
+    func testDataSubscript() {
+        #if swift(>=5.3)
+        let key = UserDefaults.Key<Data?>(UUID().uuidString)
+        #else
+        let key = UserDefaults.Key<Data?>(UUID().uuidString, defaultValue: nil)
+        #endif
+
+        UserDefaults.standard[key] = Data()
+
+        XCTAssertEqual(
+            UserDefaults.standard[key],
+            UserDefaults.standard.data(forKey: key.rawValue)
+        )
+    }
+
     func testBindingCodable() {
         struct Foo: Codable, Equatable {
             let bar: String
