@@ -2,13 +2,25 @@
 import XCTest
 
 final class UserDefaultsTests: XCTestCase {
+    var userDefaults: UserDefaults {
+        .standard
+    }
+
+    override func tearDown() {
+        super.tearDown()
+
+        userDefaults.dictionaryRepresentation().forEach { key, _ in
+            userDefaults.removeObject(forKey: key)
+        }
+    }
+
     func testBinding() {
         struct Test {
             struct Keys {
-                static let test = UserDefaults.Key(UUID().uuidString, valueType: String.self)
+                static let test = UserDefaults.Key(UUID().uuidString, defaultValue: "test")
             }
 
-            @UserDefaults.Binding(key: Keys.test, defaultValue: "test")
+            @UserDefaults.Binding(key: Keys.test)
             static var value: String
         }
 
@@ -23,10 +35,14 @@ final class UserDefaultsTests: XCTestCase {
     func testBindingNil() {
         struct Test {
             struct Keys {
-                static let test = UserDefaults.Key(UUID().uuidString, valueType: String?.self)
+                #if swift(>=5.3)
+                static let test: UserDefaults.Key<String?> = .init(UUID().uuidString)
+                #else
+                static let test: UserDefaults.Key<String?> = .init(UUID().uuidString, defaultValue: nil)
+                #endif
             }
 
-            @UserDefaults.Binding(key: Keys.test, defaultValue: "test")
+            @UserDefaults.Binding(key: Keys.test)
             static var value: String?
         }
 
@@ -41,32 +57,25 @@ final class UserDefaultsTests: XCTestCase {
     func testBindingDefaultValue() {
         struct Test {
             struct Keys {
-                static let test = UserDefaults.Key(UUID().uuidString, valueType: String.self)
+                static let test = UserDefaults.Key(UUID().uuidString, defaultValue: UUID().uuidString)
             }
 
-            @UserDefaults.Binding(key: Keys.test, defaultValue: UUID().uuidString)
+            @UserDefaults.Binding(key: Keys.test)
             static var value: String
         }
 
         XCTAssertEqual(
             Test.value,
-            Test.$value.defaultValue
-        )
-    }
-
-    func testSubscript() {
-        let key = UserDefaults.Key<Any>(UUID().uuidString)
-
-        UserDefaults.standard[key] = UUID().uuidString as NSString
-
-        XCTAssertEqual(
-            UserDefaults.standard[key] as? NSString,
-            UserDefaults.standard.object(forKey: key.rawValue) as? NSString
+            Test.$value.key.defaultValue
         )
     }
 
     func testIntSubscript() {
-        let key = UserDefaults.Key<Int>(UUID().uuidString)
+        #if swift(>=5.3)
+        let key = UserDefaults.Key<Int?>(UUID().uuidString)
+        #else
+        let key = UserDefaults.Key<Int?>(UUID().uuidString, defaultValue: nil)
+        #endif
 
         UserDefaults.standard[key] = .random(in: Int.min...Int.max)
 
@@ -77,7 +86,11 @@ final class UserDefaultsTests: XCTestCase {
     }
 
     func testFloatSubscript() {
-        let key = UserDefaults.Key<Float>(UUID().uuidString)
+        #if swift(>=5.3)
+        let key = UserDefaults.Key<Float?>(UUID().uuidString)
+        #else
+        let key = UserDefaults.Key<Float?>(UUID().uuidString, defaultValue: nil)
+        #endif
 
         UserDefaults.standard[key] = .random(in: Float.leastNormalMagnitude...Float.greatestFiniteMagnitude)
 
@@ -88,7 +101,11 @@ final class UserDefaultsTests: XCTestCase {
     }
 
     func testDoubleSubscript() {
-        let key = UserDefaults.Key<Double>(UUID().uuidString)
+        #if swift(>=5.3)
+        let key = UserDefaults.Key<Double?>(UUID().uuidString)
+        #else
+        let key = UserDefaults.Key<Double?>(UUID().uuidString, defaultValue: nil)
+        #endif
 
         UserDefaults.standard[key] = .random(in: Double.leastNormalMagnitude...Double.greatestFiniteMagnitude)
 
@@ -99,7 +116,11 @@ final class UserDefaultsTests: XCTestCase {
     }
 
     func testBoolSubscript() {
-        let key = UserDefaults.Key<Bool>(UUID().uuidString)
+        #if swift(>=5.3)
+        let key = UserDefaults.Key<Bool?>(UUID().uuidString)
+        #else
+        let key = UserDefaults.Key<Bool?>(UUID().uuidString, defaultValue: nil)
+        #endif
 
         UserDefaults.standard[key] = .random()
 
@@ -109,24 +130,7 @@ final class UserDefaultsTests: XCTestCase {
         )
     }
 
-    func testCodable() throws {
-        struct Test: Codable, Equatable {
-            var a = UUID()
-            var b = URL(fileURLWithPath: "/")
-        }
-
-        let key = UserDefaults.Key<Test>(UUID().uuidString)
-        let value = Test()
-
-        try UserDefaults.standard.set(value, forKey: key)
-
-        XCTAssertEqual(
-            try UserDefaults.standard.object(forKey: key),
-            value
-        )
-    }
-
-    func testCodableBinding() {
+    func testBindingCodable() {
         struct Foo: Codable, Equatable {
             let bar: String
 
@@ -137,10 +141,10 @@ final class UserDefaultsTests: XCTestCase {
 
         struct Test {
             struct Keys {
-                static let test = UserDefaults.Key(UUID().uuidString, valueType: Foo.self)
+                static let test = UserDefaults.Key(UUID().uuidString, defaultValue: Foo(bar: "bar"))
             }
 
-            @UserDefaults.CodableBinding(key: Keys.test, defaultValue: Foo(bar: "bar"))
+            @UserDefaults.Binding(key: Keys.test)
             static var value: Foo
         }
 
@@ -153,13 +157,13 @@ final class UserDefaultsTests: XCTestCase {
         )
     }
 
-    func testCodableBindingWithTopLevel() {
+    func testBindingCodableWithTopLevel() {
         struct Test {
             struct Keys {
-                static let test = UserDefaults.Key(UUID().uuidString, valueType: Int.self)
+                static let test = UserDefaults.Key(UUID().uuidString, defaultValue: 0)
             }
 
-            @UserDefaults.CodableBinding(key: Keys.test, defaultValue: 0)
+            @UserDefaults.Binding(key: Keys.test)
             static var value: Int
         }
 
@@ -172,56 +176,14 @@ final class UserDefaultsTests: XCTestCase {
         )
     }
 
-    func testObservation() {
-        let key = UserDefaults.Key<String>(UUID().uuidString)
-        let userDefaults = UserDefaults.standard
-
-        let newValue = UUID().uuidString
-
-        let expectation = XCTestExpectation(description: "Notified")
-        expectation.expectedFulfillmentCount = 1
-
-        let observation = userDefaults.observe(key) {
-            XCTAssertEqual($0, userDefaults)
-            XCTAssertEqual($1.newValue, newValue)
-
-            expectation.fulfill()
-        }
-
-        userDefaults[key] = newValue
-
-        wait(for: [expectation], timeout: 5.0)
-    }
-
-    func testObservationPrior() {
-        let key = UserDefaults.Key<String>(UUID().uuidString)
-        let userDefaults = UserDefaults.standard
-
-        let newValue = UUID().uuidString
-
-        let expectation = XCTestExpectation(description: "Notified")
-        expectation.expectedFulfillmentCount = 2
-
-        let observation = userDefaults.observe(key, options: [.prior, .new]) {
-            XCTAssertEqual($0, userDefaults)
-            _ = $1
-
-            expectation.fulfill()
-        }
-
-        userDefaults[key] = newValue
-
-        wait(for: [expectation], timeout: 5.0)
-    }
-
     @available(macOS 10.15, iOS 13.0, *)
     func testBindingPublisher() throws {
         struct Test {
             struct Keys {
-                static let test = UserDefaults.Key(UUID().uuidString, valueType: String.self)
+                static let test = UserDefaults.Key(UUID().uuidString, defaultValue: "test")
             }
 
-            @UserDefaults.Binding(key: Keys.test, defaultValue: "test")
+            @UserDefaults.Binding(key: Keys.test)
             static var value: String
         }
 
@@ -246,18 +208,4 @@ final class UserDefaultsTests: XCTestCase {
 
         observation.cancel()
     }
-
-    static var allTests = [
-        ("testBinding", testBinding),
-        ("testSubscript", testSubscript),
-        ("testIntSubscript", testIntSubscript),
-        ("testFloatSubscript", testFloatSubscript),
-        ("testDoubleSubscript", testDoubleSubscript),
-        ("testBoolSubscript", testBoolSubscript),
-        ("testCodable", testCodable),
-        ("testCodableBinding", testCodableBinding),
-        ("testCodableBindingWithTopLevel", testCodableBindingWithTopLevel),
-        ("testObservation", testObservation),
-        ("testObservationPrior", testObservationPrior)
-    ]
 }

@@ -175,16 +175,4 @@ final class XMLTests: XCTestCase {
             XCTAssertEqual(($0 as NSError).code, XMLParser.ErrorCode.prematureDocumentEndError.rawValue)
         }
     }
-
-    static var allTests = [
-        ("testNoteXMLInit", testNoteXMLInit),
-        ("testNoteXMLSubscriptByXPath", testNoteXMLSubscriptByXPath),
-        ("testContainerXMLInit", testContainerXMLInit),
-        ("testContainerXMLSubscriptByXPath", testContainerXMLSubscriptByXPath),
-        ("testExcessiveSpineItemsXMLInit", testExcessiveSpineItemsXMLInit),
-        ("testDeepDepthNavipointsXMLInit", testDeepDepthNavipointsXMLInit),
-        ("testExcessiveNavpointsXMLInit", testExcessiveNavpointsXMLInit),
-        ("testEmptyStringXMLInit", testEmptyStringXMLInit),
-        ("testPrematureDocumentEndXMLInit", testPrematureDocumentEndXMLInit)
-    ]
 }
