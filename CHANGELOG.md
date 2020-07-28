@@ -9,6 +9,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * None.
 
+## [0.5.0 (2020-07-28)]
+
+### Added
+
+* Add `Atomic` property wrapper.
+
+### Changed
+
+* Enhance `UserDefatuls` extensions.
+
+### Removed
+
+* Remove `UserDefaults.CodableBinding`. (that can be now replaced by `UserDefaults.Binding`.)
+
 ## [0.4.1 (2020-07-03)]
 
 ### Changed
@@ -55,7 +69,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * First release.
 
-[Unreleased]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.4.1...HEAD
+[Unreleased]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.5.0...HEAD
+[0.5.0 (2020-07-28)]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.4.1...0.5.0
 [0.4.1 (2020-07-03)]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.4.0...0.4.1
 [0.4.0 (2020-07-03)]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.3.2...0.4.0
 [0.3.2 (2020-06-11)]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.3.1...0.3.2
