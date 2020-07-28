@@ -1,7 +1,8 @@
-import XCTest
+#error("""
 
-import RIDIFoundationTests
+  -----------------------------------------------------
 
-var tests = [XCTestCaseEntry]()
-tests += RIDIFoundationTests.allTests()
-XCTMain(tests)
+  Please test with `swift test --enable-test-discovery`
+
+  -----------------------------------------------------
+  """)
