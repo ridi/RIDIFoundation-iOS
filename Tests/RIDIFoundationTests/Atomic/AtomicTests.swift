@@ -5,7 +5,7 @@ final class AtomicTests: XCTestCase {
     func testUpdate() throws {
         struct Test {
             @Atomic
-            static var value: Int = Int.random(in: (.min)...(.max))
+            static var value: Int = .random(in: (.min)...(.max))
         }
 
         let newValue = Int.random(in: (.min)...(.max))
@@ -17,7 +17,7 @@ final class AtomicTests: XCTestCase {
     func testConcurrentPerform() throws {
         struct Test {
             @Atomic
-            static var value: Int = Int.random(in: (.min)...(.max))
+            static var value: Int = .random(in: (.min)...(.max))
         }
 
         let expectaion = XCTestExpectation()
@@ -43,7 +43,7 @@ final class AtomicTests: XCTestCase {
             static var queue = DispatchQueue(label: "test")
 
             @Atomic(queue: queue)
-            static var value: Int = Int.random(in: (.min)...(.max))
+            static var value: Int = .random(in: (.min)...(.max))
         }
 
         let expectaion = XCTestExpectation()
