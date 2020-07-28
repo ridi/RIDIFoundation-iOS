@@ -106,13 +106,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/runner/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults+Binding.swift",
-      "line": 105,
-      "symbol": "UserDefaults.Binding",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/runner/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults+Codable.swift",
       "line": 18,
       "symbol": "UserDefaults.Key",
@@ -135,56 +128,56 @@
     },
     {
       "file": "/Users/runner/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults+Codable.swift",
-      "line": 88,
+      "line": 89,
       "symbol": "UserDefaults.ridi_object(forKey:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults+Codable.swift",
-      "line": 94,
+      "line": 95,
       "symbol": "UserDefaults.ridi_set(_:forKey:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults+Codable.swift",
-      "line": 98,
+      "line": 99,
       "symbol": "UserDefaults.ridi_object(forKey:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults+Codable.swift",
-      "line": 102,
+      "line": 103,
       "symbol": "UserDefaults.ridi_set(_:forKey:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults+Codable.swift",
-      "line": 106,
+      "line": 107,
       "symbol": "UserDefaults.subscript(_:)",
       "symbol_kind": "source.lang.swift.decl.function.subscript",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults+Codable.swift",
-      "line": 115,
+      "line": 116,
       "symbol": "UserDefaults.ridi_removeObject(forKey:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults+Codable.swift",
-      "line": 119,
+      "line": 120,
       "symbol": "UserDefaults.ridi_objectIsForced(forKey:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/Extensions/Foundation/UserDefaults+Codable.swift",
-      "line": 123,
+      "line": 124,
       "symbol": "UserDefaults.ridi_objectIsForced(forKey:inDomain:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
