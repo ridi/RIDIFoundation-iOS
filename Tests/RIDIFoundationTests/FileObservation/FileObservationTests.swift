@@ -21,11 +21,12 @@ final class FileObservationTests: XCTestCase {
             encoding: .utf8
         )
 
-        fileObservation = nil
-
         try FileManager.default.removeItem(at: tempDirectory)
 
         wait(for: [expectation], timeout: 5.0)
+
+        fileObservation = nil
+        XCTAssert(fileObservation == nil)
     }
 
     func testNilNotify() throws {
@@ -42,6 +43,7 @@ final class FileObservationTests: XCTestCase {
         }
 
         fileObservation = nil
+        XCTAssert(fileObservation == nil)
 
         try FileManager.default.removeItem(at: tempDirectory)
 
