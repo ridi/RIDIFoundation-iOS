@@ -52,11 +52,12 @@ extension UserDefaults {
     }
 
     static func decode<T: Decodable>(_ value: Any?) throws -> T? {
-        guard
-            !(T.self is Data.Type),
-            let data = value as? Data
-        else {
-            return value as? T
+        if let value = value as? T {
+            return value
+        }
+
+        guard let data = value as? Data else {
+            return nil
         }
 
         do {

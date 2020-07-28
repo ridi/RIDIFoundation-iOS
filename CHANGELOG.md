@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * None.
 
+## [0.5.1 (2020-07-28)]
+
+### Changed
+
+* Fix Data type can not be used with `UserDefatuls` extensions.
+
 ## [0.5.0 (2020-07-28)]
 
 ### Added
@@ -69,7 +75,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * First release.
 
-[Unreleased]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.5.0...HEAD
+[Unreleased]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.5.1...HEAD
+[0.5.1 (2020-07-28)]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.5.0...0.5.1
 [0.5.0 (2020-07-28)]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.4.1...0.5.0
 [0.4.1 (2020-07-03)]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.4.0...0.4.1
 [0.4.0 (2020-07-03)]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.3.2...0.4.0

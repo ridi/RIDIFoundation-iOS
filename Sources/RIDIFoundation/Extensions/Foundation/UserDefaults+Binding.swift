@@ -97,12 +97,4 @@ extension UserDefaults.Binding: ObservableObject {
             .eraseToAnyPublisher()
     }
 }
-
-#if canImport(SwiftUI)
-import SwiftUI
-
-@available(macOS 10.15, iOS 13.0, *)
-extension UserDefaults.Binding: DynamicProperty { }
-#endif
-
 #endif
