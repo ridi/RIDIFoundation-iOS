@@ -51,7 +51,7 @@ open class XMLElement: XMLNode {
         return "<\(descriptions)>"
     }
 
-    override func nodes(forXPath xPath: String) throws -> [XMLNode] {
+    open override func nodes(forXPath xPath: String) throws -> [XMLNode] {
         guard !xPath.starts(with: "@") else {
             let paths = xPath.split(separator: "/")
             let firstPath = paths.first.flatMap { String($0.dropFirst(1)) }

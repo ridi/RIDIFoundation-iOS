@@ -37,24 +37,9 @@ open class XMLDocument: XMLNode, XMLDocumentProtocol {
         set {}
     }
 
-    override func nodes(forXPath xPath: String) throws -> [XMLNode] {
+    open override func nodes(forXPath xPath: String) throws -> [XMLNode] {
         guard !xPath.starts(with: "//") else {
-            guard !xPath.dropFirst(2).starts(with: "@") else {
-                return try flattendChildren?.flatMap { try $0.nodes(forXPath: String(xPath.dropFirst(2))) } ?? []
-            }
-
-            let paths = xPath.split(separator: "/")
-            let firstPath = paths.first.flatMap { String($0) }
-
-            let elements = flattendChildren?.filter({ $0.name == firstPath })
-
-            if paths.dropFirst().isEmpty {
-                return elements ?? []
-            } else {
-                return try elements?.flatMap {
-                    try $0.nodes(forXPath: paths.dropFirst().joined(separator: "/"))
-                } ?? []
-            }
+            return (try super.nodes(forXPath: String(xPath.dropFirst(2))) ) + (try flattendChildren?.flatMap { try $0.nodes(forXPath: String(xPath.dropFirst(2))) } ?? [])
         }
 
         guard !xPath.starts(with: "/") else {
