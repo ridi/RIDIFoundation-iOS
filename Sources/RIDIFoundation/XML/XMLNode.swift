@@ -74,7 +74,7 @@ open class XMLNode: CustomDebugStringConvertible {
     }
 
     // FIXME: Not support predicate yet!
-    func nodes(forXPath xPath: String) throws -> [XMLNode] {
+    open func nodes(forXPath xPath: String) throws -> [XMLNode] {
         guard !xPath.starts(with: "/") else {
             return try rootDocument?.nodes(forXPath: xPath) ?? []
         }
@@ -84,9 +84,21 @@ open class XMLNode: CustomDebugStringConvertible {
         }
 
         let paths = xPath.split(separator: "/")
-        let firstPath = paths.first.flatMap { String($0) }
+        guard
+            let firstPath = paths.first.flatMap({ String($0) })?.split(separator: ":"),
+            (1...2) ~= firstPath.count
+        else {
+            throw XMLError.invalidXPath
+        }
 
-        let elements = children?.filter({ $0.name == firstPath })
+        let elements = children?.filter {
+            switch firstPath.count {
+            case 2 where firstPath[0] == "*":
+                return $0.name?.split(separator: ":").last == firstPath[1]
+            default:
+                return $0.name == firstPath.joined(separator: ":")
+            }
+        }
 
         if paths.dropFirst().isEmpty {
             return elements ?? []
