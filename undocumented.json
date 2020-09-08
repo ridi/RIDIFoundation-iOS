@@ -289,28 +289,35 @@
     },
     {
       "file": "/Users/runner/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLDocument.swift",
-      "line": 68,
+      "line": 40,
+      "symbol": "XMLDocument.nodes(forXPath:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLDocument.swift",
+      "line": 54,
       "symbol": "XMLDocumentProtocol",
       "symbol_kind": "source.lang.swift.decl.protocol",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLDocument.swift",
-      "line": 70,
+      "line": 56,
       "symbol": "XMLDocumentProtocol",
       "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLDocument.swift",
-      "line": 71,
+      "line": 57,
       "symbol": "XMLDocumentProtocol.init(data:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLDocument.swift",
-      "line": 87,
+      "line": 73,
       "symbol": "XMLDocumentProtocol.init(xmlString:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -348,6 +355,13 @@
       "line": 34,
       "symbol": "XMLElement.debugDescription",
       "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLElement.swift",
+      "line": 54,
+      "symbol": "XMLElement.nodes(forXPath:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
@@ -429,35 +443,42 @@
     },
     {
       "file": "/Users/runner/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLNode.swift",
-      "line": 180,
+      "line": 77,
+      "symbol": "XMLNode.nodes(forXPath:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLNode.swift",
+      "line": 192,
       "symbol": "XMLNode",
       "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLNode.swift",
-      "line": 181,
+      "line": 193,
       "symbol": "XMLNode.subscript(xPath:)",
       "symbol_kind": "source.lang.swift.decl.function.subscript",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLNode.swift",
-      "line": 186,
+      "line": 198,
       "symbol": "XMLNode",
       "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLNode.swift",
-      "line": 187,
+      "line": 199,
       "symbol": "XMLNode.subscript(_:)",
       "symbol_kind": "source.lang.swift.decl.function.subscript",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/RIDIFoundation-iOS/RIDIFoundation-iOS/Sources/RIDIFoundation/XML/XMLNode.swift",
-      "line": 193,
+      "line": 205,
       "symbol": "Array.subscript(_:)",
       "symbol_kind": "source.lang.swift.decl.function.subscript",
       "warning": "undocumented"
