@@ -83,30 +83,7 @@ open class XMLNode: CustomDebugStringConvertible {
             return try parent?.nodes(forXPath: String(xPath.dropFirst(3))) ?? []
         }
 
-        let paths = xPath.split(separator: "/")
-        guard
-            let firstPath = paths.first.flatMap({ String($0) })?.split(separator: ":"),
-            (1...2) ~= firstPath.count
-        else {
-            throw XMLError.invalidXPath
-        }
-
-        let elements = children?.filter {
-            switch firstPath.count {
-            case 2 where firstPath[0] == "*":
-                return $0.name?.split(separator: ":").last == firstPath[1]
-            default:
-                return $0.name == firstPath.joined(separator: ":")
-            }
-        }
-
-        if paths.dropFirst().isEmpty {
-            return elements ?? []
-        } else {
-            return try elements?.flatMap {
-                try $0.nodes(forXPath: paths.dropFirst().joined(separator: "/"))
-            } ?? []
-        }
+        return try children?.nodes(forXPath: xPath) ?? []
     }
 
     func insertChild(_ child: XMLNode, at index: Int) {
