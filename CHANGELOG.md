@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * None.
 
+## [0.5.3 (2020-09-28)]
+
+### Changed
+
+* Make `XMLNode[xPath:]` return by node order.
+
 ## [0.5.2 (2020-09-08)]
 
 ### Added
@@ -81,7 +87,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * First release.
 
-[Unreleased]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.5.2...HEAD
+[Unreleased]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.5.3...HEAD
+[0.5.3 (2020-09-28)]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.5.2...0.5.3
 [0.5.2 (2020-09-08)]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.5.1...0.5.2
 [0.5.1 (2020-07-28)]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.5.0...0.5.1
 [0.5.0 (2020-07-28)]: https://github.com/ridi/RIDIFoundation-iOS/compare/0.4.1...0.5.0

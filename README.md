@@ -17,7 +17,7 @@ A Swift Foundation additions from RIDI
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/ridi/RIDIFoundation-iOS.git", .upToNextMinor(from: "0.5.2"))
+    .package(url: "https://github.com/ridi/RIDIFoundation-iOS.git", .upToNextMinor(from: "0.5.3"))
 ]
 ```
 
