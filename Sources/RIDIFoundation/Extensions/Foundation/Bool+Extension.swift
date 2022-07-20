@@ -1,7 +1,7 @@
 import Foundation
 
 extension Bool {
-  func not() -> Bool {
+  public func not() -> Bool {
     return !self
   }
 }
